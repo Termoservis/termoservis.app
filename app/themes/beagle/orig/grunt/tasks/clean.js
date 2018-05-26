@@ -9,5 +9,11 @@ module.exports = {
   },
   dist:{
     src: ['dist']
+  },
+  final:{
+    options:{
+      force: true
+    },
+    src: ['../dist']
   }
 };

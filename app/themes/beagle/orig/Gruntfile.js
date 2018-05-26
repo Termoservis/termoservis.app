@@ -52,12 +52,13 @@ module.exports = function(grunt) {
   grunt.registerTask('dist', function( ){
     grunt.task.run([ 
       'clean:dist',
+      'clean:final',
       'sass:dist',
       'postcss:dist',
       'cssmin:dist',
       'copy:dist',
       'uglify:dist',
-      'copy:starter',
+      // 'copy:starter',
       'copy:final'
     ]);
   });

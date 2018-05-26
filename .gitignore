@@ -311,3 +311,5 @@ __pycache__/
 # Ignore theme default dist
 app/src/themes/beagle/orig/dist/
 app/src/themes/beagle/orig/docs/
+app/src/**/*.css
+!app/src/themes/**/*.css

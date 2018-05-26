@@ -309,5 +309,5 @@ __pycache__/
 # End of https://www.gitignore.io/api/visualstudio,visualstudiocode
 
 # Ignore theme default dist
-app/themes/beagle/orig/dist/
-app/themes/beagle/orig/docs/
+app/src/themes/beagle/orig/dist/
+app/src/themes/beagle/orig/docs/

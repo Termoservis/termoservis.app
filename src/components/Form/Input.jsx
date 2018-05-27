@@ -8,7 +8,7 @@ const propTypes = {
 
 const defaultProps = {
     type: 'text',
-    className: null
+    className: undefined
 };
 
 const Input = ({ type, className, ...rest }) => (

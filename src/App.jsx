@@ -1,16 +1,49 @@
 import React from 'react';
+import { BrowserRouter as Router, Redirect, Route, Link } from 'react-router-dom';
+import NavLinkListItem from './components/NavLinkListItem/NavLinkListItem';
+
+import Login from './components/Login/Login';
+import Tooltip from './components/Tooltip/Tooltip';
+
+import SessionManager from './managers/SessionManager';
+
 import './styles/App.css';
+import Button from './components/Button/Button';
+import Icon from './components/Icon/Icon';
+import Panel from './components/Panel/Panel';
+import PanelHeader from './components/Panel/PanelHeader';
+import PanelTools from './components/Panel/PanelTools';
+import PanelBody from './components/Panel/PanelBody';
+import Table from './components/Table/Table';
+import TableHeader from './components/Table/TableHeader';
+import TableColumn from './components/Table/TableColumn';
+import TableBody from './components/Table/TableBody';
+import TableRow from './components/Table/TableRow';
+import TableCell from './components/Table/TableCell';
 
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import NavLinkListItem from './components/navLinkListItem/NavLinkListItem';
 
-import Login from './components/login/Login';
-import Tooltip from './components/tooltip/Tooltip';
-
-const DefaultLayout = ({ component: Component, ...rest }) => (
+const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
         {...rest}
-        render={matchProps => (
+        render={matchedProps =>
+            (SessionManager.instance.isAuthenticated ? (
+                <Component {...matchedProps} />
+            ) : (
+                <Redirect
+                    to={{
+                        pathname: '/login',
+                        state: { from: matchedProps.location }
+                    }}
+                />
+            ))
+        }
+    />
+);
+
+const DefaultLayout = ({ baseRoute: BaseRoute, component: Component, ...rest }) => (
+    <BaseRoute
+        {...rest}
+        component={matchProps => (
             <div className="be-wrapper be-fixed-sidebar">
                 <nav className="navbar navbar-expand fixed-top be-top-header">
                     <div className="container-fluid">
@@ -63,12 +96,12 @@ const DefaultLayout = ({ component: Component, ...rest }) => (
     />
 );
 
-const SplashScreenLayout = ({ component: Component, ...rest }) => (
-    <Route
+const SplashScreenLayout = ({ baseRoute: BaseRoute, component: Component, ...rest }) => (
+    <BaseRoute
         {...rest}
-        render={matchProps => (
+        component={matchedProps => (
             <div className="be-splash-screen">
-                <Component {...matchProps} />
+                <Component {...matchedProps} />
             </div>
         )}
     />
@@ -84,6 +117,7 @@ const routes = [
     },
     {
         path: '/login',
+        isPublic: true,
         isFullPage: true,
         layout: SplashScreenLayout,
         main: () => <Login />
@@ -100,7 +134,13 @@ const BasicExample = () => (
     <Router>
         <div>
             {routes.map(route => (
-                <route.layout key={route.path} path={route.path} exact={route.exact} component={route.main} />
+                <route.layout
+                    baseRoute={route.isPublic ? Route : PrivateRoute}
+                    key={route.path}
+                    path={route.path}
+                    exact={route.exact}
+                    component={route.main}
+                />
             ))}
         </div>
     </Router>
@@ -110,40 +150,38 @@ const UsersIndex = () => (
     <div className="main-content container-fluid">
         <div className="row">
             <div className="col-lg-12">
-                <div className="card card-table">
-                    <div className="card-header">
+                <Panel table>
+                    <PanelHeader>
                         <span>Korisnici</span>
-                        <div className="tools dropdown">
+                        <PanelTools>
                             <Tooltip title="Dodaj novog korisnika" placement="left">
-                                <i className="icon mdi mdi-plus" />
+                                <Icon name="account-add" />
                             </Tooltip>
-                        </div>
-                    </div>
-                    <div className="card-body">
-                        <table className="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Naziv</th>
-                                    <th>Adresa</th>
-                                    <th>Bilješka</th>
-                                    <th>Zadnji radovi</th>
-                                    <th className="actions" />
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>36 d.o.o. Mb</td>
-                                    <td>Matova 14, Zagreb, Čakovec</td>
-                                    <td>Description</td>
-                                    <td>23/06/2016</td>
-                                    <td className="actions edit-user">
-                                        <i className="mdi mdi-edit" />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                        </PanelTools>
+                    </PanelHeader>
+                    <PanelBody>
+                        <Table hover>
+                            <TableHeader>
+                                <TableColumn>Naziv</TableColumn>
+                                <TableColumn>Adresa</TableColumn>
+                                <TableColumn>Bilješka</TableColumn>
+                                <TableColumn>Zadnji radovi</TableColumn>
+                                <TableColumn actions />
+                            </TableHeader>
+                            <TableBody>
+                                <TableRow>
+                                    <TableCell>36 d.o.o. Mb</TableCell>
+                                    <TableCell>Matova 14, Zagreb, Čakovec</TableCell>
+                                    <TableCell />
+                                    <TableCell>23/06/2016</TableCell>
+                                    <TableCell actions className="edit-user">
+                                        <Icon name="edit" />
+                                    </TableCell>
+                                </TableRow>
+                            </TableBody>
+                        </Table>
+                    </PanelBody>
+                </Panel>
             </div>
         </div>
     </div>

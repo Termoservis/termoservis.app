@@ -11,7 +11,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    className: null
+    className: undefined
 };
 
 const FormGroup = ({ className, children, ...rest }) => (

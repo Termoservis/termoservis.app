@@ -4,88 +4,13 @@ import { storiesOf } from '@storybook/react';
 import centered from '@storybook/addon-centered';
 import { checkA11y } from '@storybook/addon-a11y';
 
-import '../styles/App.scss';
-import Tooltip from '../components/tooltip/Tooltip';
-import Button from '../components/Button/Button';
 import Panel from '../components/Panel/Panel';
 import PanelBody from '../components/Panel/PanelBody';
 import PanelHeader from '../components/Panel/PanelHeader';
 import PanelHeaderSubtitle from '../components/Panel/PanelHeaderSubtitle';
-
-storiesOf('Button', module)
-    .addDecorator(centered)
-    .addDecorator(checkA11y)
-    .add('colors', () => (
-        <div>
-            <Button>Default</Button>
-            <Button color="secondary">Secondary</Button>
-            <Button color="primary">Primary</Button>
-            <Button color="danger">Danger</Button>
-            <Button color="warning">Warning</Button>
-            <Button color="success">Success</Button>
-        </div>
-    ))
-    .add('sizes', () => (
-        <div>
-            <Button size="xs">Extra small</Button>
-            <Button size="sm">Small</Button>
-            <Button>Default</Button>
-            <Button size="lg">Large</Button>
-            <Button size="xl">Extra large</Button>
-        </div>
-    ));
-
-storiesOf('Tooltip', module)
-    .addDecorator(centered)
-    .addDecorator(checkA11y)
-    .add('over Icon', () => (
-        <div>
-            <div className="p-3">
-                <Tooltip title="Top over icon" placement="top">
-                    <i className="icon mdi mdi-chevron-up" style={{ fontSize: '2em' }} />
-                </Tooltip>
-            </div>
-            <div className="p-3">
-                <Tooltip title="Right over icon" placement="right">
-                    <i className="icon mdi mdi-chevron-right" style={{ fontSize: '2em' }} />
-                </Tooltip>
-            </div>
-            <div className="p-3">
-                <Tooltip title="Bottom over icon" placement="bottom">
-                    <i className="icon mdi mdi-chevron-down" style={{ fontSize: '2em' }} />
-                </Tooltip>
-            </div>
-            <div className="p-3">
-                <Tooltip title="Left over icon" placement="left">
-                    <i className="icon mdi mdi-chevron-left" style={{ fontSize: '2em' }} />
-                </Tooltip>
-            </div>
-        </div>
-    ))
-    .add('over Button', () => (
-        <div>
-            <div className="p-3">
-                <Tooltip title="Top over icon" placement="top">
-                    <Button>Top</Button>
-                </Tooltip>
-            </div>
-            <div className="p-3">
-                <Tooltip title="Right over icon" placement="right">
-                    <Button>Right</Button>
-                </Tooltip>
-            </div>
-            <div className="p-3">
-                <Tooltip title="Bottom over icon" placement="bottom">
-                    <Button>Bottom</Button>
-                </Tooltip>
-            </div>
-            <div className="p-3">
-                <Tooltip title="Left over icon" placement="left">
-                    <Button>Left</Button>
-                </Tooltip>
-            </div>
-        </div>
-    ));
+import PanelTools from '../components/Panel/PanelTools';
+import Icon from '../components/Icon/Icon';
+import Button from '../components/Button/Button';
 
 storiesOf('Panel', module)
     .addDecorator(centered)
@@ -186,4 +111,26 @@ storiesOf('Panel', module)
                 </PanelBody>
             </Panel>
         </div>
+    ))
+    .add('Tools', () => (
+        <div className="col-4 offset-md-4">
+            <Panel>
+                <PanelHeader>
+                    <span>Header Tools</span>
+                    <PanelTools>
+                        <Button size="lg">
+                            <Icon name="account-add" noIcon />
+                        </Button>
+                    </PanelTools>
+                    <PanelHeaderSubtitle>
+                        Header Tools panel subtitle
+                    </PanelHeaderSubtitle>
+                </PanelHeader>
+                <PanelBody>
+                    <p>Quisque gravida aliquam diam at cursus, quisque laoreet ac lectus a rhoncusac tempus odio.</p>
+                    <p>Aliquam posuere volutpat turpis, ut euimod diam pellentesque at. Sed sit amet nulla a dui dignisim euismod. Morbi luctus elementum dictum. Donec convallis mattis elit id varius. Quisque facilisis sapien quis mauris, erat condimentum.</p>
+                </PanelBody>
+            </Panel>
+        </div>
     ));
+

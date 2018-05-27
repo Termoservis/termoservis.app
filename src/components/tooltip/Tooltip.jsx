@@ -10,7 +10,7 @@ const propTypes = {
 
 const defaultProps = {
     placement: 'right',
-    className: null
+    className: undefined
 };
 
 class Tooltip extends React.PureComponent {

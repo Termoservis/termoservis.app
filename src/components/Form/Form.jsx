@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-    children: PropTypes.arrayOf(PropTypes.element).isRequired
+    children: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.element),
+        PropTypes.element
+    ]).isRequired
 };
 
 const Form = ({ children, ...rest }) => (

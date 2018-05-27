@@ -29,18 +29,24 @@ $dark-color-text: #333333;
 }
 
 .table-hover {
-    tr {
-        &:hover {
-            cursor: pointer;
-        }
-
-        td.actions.edit-user {
-            padding-right: 10px;
-
+    thead {
+        user-select: none;
+    }
+    
+    tbody {
+        tr {
             &:hover {
-                background-color: #ddd;
-                i {
-                    color: $dark-color-text;
+                cursor: pointer;
+            }
+
+            td.actions.edit-user {
+                padding-right: 10px;
+
+                &:hover {
+                    background-color: #ddd;
+                    i {
+                        color: $dark-color-text;
+                    }
                 }
             }
         }

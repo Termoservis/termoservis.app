@@ -4,6 +4,7 @@ import classnames from 'classnames';
 
 const propTypes = {
     border: PropTypes.bool,
+    table: PropTypes.bool,
     contrast: PropTypes.bool,
     borderColor: PropTypes.oneOf(['secondary', 'primary', 'danger', 'warning', 'success', 'dark']),
     className: PropTypes.string,
@@ -15,17 +16,19 @@ const propTypes = {
 
 const defaultProps = {
     border: false,
+    table: false,
     contrast: false,
-    borderColor: null,
-    className: null
+    borderColor: undefined,
+    className: undefined
 };
 
 const Panel = ({
-    className, children, border, borderColor, contrast, ...rest
+    className, table, children, border, borderColor, contrast, ...rest
 }) => (
     <div
         className={classnames(
             'card',
+            table && 'card-table',
             border && 'card-border',
             contrast && 'card-contrast',
             borderColor && `card-border-color card-border-color-${borderColor}`,

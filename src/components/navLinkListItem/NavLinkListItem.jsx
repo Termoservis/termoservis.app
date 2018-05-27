@@ -1,10 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Route, Link } from "react-router-dom";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Route, Link } from 'react-router-dom';
 
 /**
  * A <Link> wrapper that knows if it's "active" or not.
- * 
+ *
  * @returns {React.ReactNode} Returns the react node.
  */
 const NavLinkListItem = ({
@@ -17,13 +17,13 @@ const NavLinkListItem = ({
     activeStyle,
     style,
     isActive: getIsActive,
-    "aria-current": ariaCurrent,
+    'aria-current': ariaCurrent,
     ...rest
 }) => {
-    const path = typeof to === "object" ? to.pathname : to;
+    const path = typeof to === 'object' ? to.pathname : to;
 
     // Regex taken from: https://github.com/pillarjs/path-to-regexp/blob/master/index.js#L202
-    const escapedPath = path && path.replace(/([.+*?=^!:${}()[\]|/\\])/g, "\\$1");
+    const escapedPath = path && path.replace(/([.+*?=^!:${}()[\]|/\\])/g, '\\$1');
 
     return (
         <Route
@@ -37,9 +37,10 @@ const NavLinkListItem = ({
                 return (
                     <li className={
                         isActive
-                            ? [className, activeClassName].filter(i => i).join(" ")
+                            ? [className, activeClassName].filter(i => i).join(' ')
                             : className
-                    }>
+                    }
+                    >
                         <Link
                             to={to}
                             style={isActive ? { ...style, ...activeStyle } : style}
@@ -63,19 +64,19 @@ NavLinkListItem.propTypes = {
     activeStyle: PropTypes.object,
     style: PropTypes.object,
     isActive: PropTypes.func,
-    "aria-current": PropTypes.oneOf([
-        "page",
-        "step",
-        "location",
-        "date",
-        "time",
-        "true"
+    'aria-current': PropTypes.oneOf([
+        'page',
+        'step',
+        'location',
+        'date',
+        'time',
+        'true'
     ])
 };
 
 NavLinkListItem.defaultProps = {
-    activeClassName: "active",
-    "aria-current": "page"
+    activeClassName: 'active',
+    'aria-current': 'page'
 };
 
 export default NavLinkListItem;

@@ -3,30 +3,36 @@ import PropTypes from 'prop-types';
 
 const propTypes = {
     title: PropTypes.string.isRequired,
-    placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left'])
+    placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+    className: PropTypes.string,
+    children: PropTypes.element.isRequired
 };
 
 const defaultProps = {
-    placement: 'right'
+    placement: 'right',
+    className: null
 };
 
 class Tooltip extends React.PureComponent {
-    selfRef;
-
     componentDidMount() {
-        const $ = window.$;
+        const { $ } = window;
         $(this.selfRef).tooltip();
     }
 
+    selfRef;
+
     render() {
-        const { children, title, placement, className } = this.props;
+        const {
+            children, title, placement, className
+        } = this.props;
         return (
             <span
                 ref={(ref) => { if (ref) this.selfRef = ref; }}
                 className={`d-inline-block ${className}`}
-                data-toggle="tooltip" 
+                data-toggle="tooltip"
                 data-placement={placement}
-                title={title}>
+                title={title}
+            >
                 {children}
             </span>
         );

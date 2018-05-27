@@ -32,6 +32,8 @@ module.exports = function(grunt, data){
         final:{
             files:[
                 {expand: true, src: [
+                    "css/**",
+                    "img/**",
                     "lib/jquery/**",
                     "lib/tether/**",
                     "lib/bootstrap/**",

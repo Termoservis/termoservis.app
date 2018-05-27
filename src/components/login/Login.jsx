@@ -4,14 +4,14 @@ import FormGroup from '../Form/FormGroup';
 import PasswordInput from '../Form/PasswordInput';
 import Input from '../Form/Input';
 import Form from '../Form/Form';
-import Panel from "../Panel/Panel";
-import PanelBody from "../Panel/PanelBody";
-import PanelHeader from "../Panel/PanelHeader";
-import PanelHeaderSubtitle from "../Panel/PanelHeaderSubtitle";
+import Panel from '../Panel/Panel';
+import PanelBody from '../Panel/PanelBody';
+import PanelHeader from '../Panel/PanelHeader';
+import PanelHeaderSubtitle from '../Panel/PanelHeaderSubtitle';
 
 /**
  * The login component.
- * 
+ *
  * @returns {React.ReactNode} Returns the react noce.
  */
 const Login = () => (
@@ -21,18 +21,21 @@ const Login = () => (
                 <div className="splash-container">
                     <Panel borderColor="danger">
                         <PanelHeader>
-                            <div className="h2 logo-img">TERMOSERVIS</div>
-                            <PanelHeaderSubtitle>
-                                Molimo unesite vaše pristupne podatke.
-                            </PanelHeaderSubtitle>
+                            <div>
+                                <div className="h2 logo-img">TERMOSERVIS</div>
+                                <PanelHeaderSubtitle>
+                                    <span>Molimo unesite vaše pristupne podatke.</span>
+                                </PanelHeaderSubtitle>
+                            </div>
                         </PanelHeader>
                         <PanelBody>
                             <Form>
                                 <FormGroup>
-                                    <Input 
-                                        id="username" 
+                                    <Input
+                                        id="username"
                                         placeholder="Korisničko ime ili email"
-                                        autoComplete="off" />
+                                        autoComplete="off"
+                                    />
                                 </FormGroup>
                                 <FormGroup>
                                     <PasswordInput id="password" placeholder="Zaporka" />

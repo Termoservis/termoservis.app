@@ -1,19 +1,19 @@
-/*Dist remove folders*/
+/* Dist remove folders*/
 
 module.exports = {
-	install:{
-    options:{
-      force: true
+    install: {
+        options: {
+            force: true
+        },
+        src: ['src/assets/lib']
     },
-    src: ['src/assets/lib']
-  },
-  dist:{
-    src: ['dist']
-  },
-  final:{
-    options:{
-      force: true
+    dist: {
+        src: ['dist']
     },
-    src: ['../dist']
-  }
+    final: {
+        options: {
+            force: true
+        },
+        src: ['../../../../public/themes/beagle/dist']
+    }
 };

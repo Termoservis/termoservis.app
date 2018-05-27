@@ -12,10 +12,11 @@ const defaultProps = {
 };
 
 const Input = ({ type, className, ...rest }) => (
-    <input 
+    <input
         type={type}
-        className={`form-control ${className}`} 
-        {...rest} />
+        className={`form-control ${className}`}
+        {...rest}
+    />
 );
 
 Input.propTypes = propTypes;

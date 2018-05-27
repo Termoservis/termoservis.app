@@ -1,23 +1,21 @@
-import React from "react";
+import React from 'react';
 
-import { storiesOf } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
-import { linkTo } from "@storybook/addon-links";
-import centered from "@storybook/addon-centered";
+import { storiesOf } from '@storybook/react';
+import centered from '@storybook/addon-centered';
 import { checkA11y } from '@storybook/addon-a11y';
 
-import "../styles/App.scss";
-import Tooltip from "../components/tooltip/Tooltip";
-import Button from "../components/Button/Button";
-import Panel from "../components/Panel/Panel";
-import PanelBody from "../components/Panel/PanelBody";
-import PanelHeader from "../components/Panel/PanelHeader";
-import PanelHeaderSubtitle from "../components/Panel/PanelHeaderSubtitle";
+import '../styles/App.scss';
+import Tooltip from '../components/tooltip/Tooltip';
+import Button from '../components/Button/Button';
+import Panel from '../components/Panel/Panel';
+import PanelBody from '../components/Panel/PanelBody';
+import PanelHeader from '../components/Panel/PanelHeader';
+import PanelHeaderSubtitle from '../components/Panel/PanelHeaderSubtitle';
 
-storiesOf("Button", module)
+storiesOf('Button', module)
     .addDecorator(centered)
     .addDecorator(checkA11y)
-    .add("colors", () => (
+    .add('colors', () => (
         <div>
             <Button>Default</Button>
             <Button color="secondary">Secondary</Button>
@@ -26,7 +24,8 @@ storiesOf("Button", module)
             <Button color="warning">Warning</Button>
             <Button color="success">Success</Button>
         </div>
-    )).add("sizes", () => (
+    ))
+    .add('sizes', () => (
         <div>
             <Button size="xs">Extra small</Button>
             <Button size="sm">Small</Button>
@@ -36,34 +35,34 @@ storiesOf("Button", module)
         </div>
     ));
 
-storiesOf("Tooltip", module)
+storiesOf('Tooltip', module)
     .addDecorator(centered)
     .addDecorator(checkA11y)
-    .add("over Icon", () => (
+    .add('over Icon', () => (
         <div>
             <div className="p-3">
                 <Tooltip title="Top over icon" placement="top">
-                    <i className="icon mdi mdi-chevron-up" style={{fontSize: "2em"}}></i>
+                    <i className="icon mdi mdi-chevron-up" style={{ fontSize: '2em' }} />
                 </Tooltip>
             </div>
             <div className="p-3">
                 <Tooltip title="Right over icon" placement="right">
-                    <i className="icon mdi mdi-chevron-right" style={{fontSize: "2em"}}></i>
+                    <i className="icon mdi mdi-chevron-right" style={{ fontSize: '2em' }} />
                 </Tooltip>
             </div>
             <div className="p-3">
                 <Tooltip title="Bottom over icon" placement="bottom">
-                    <i className="icon mdi mdi-chevron-down" style={{fontSize: "2em"}}></i>
+                    <i className="icon mdi mdi-chevron-down" style={{ fontSize: '2em' }} />
                 </Tooltip>
             </div>
             <div className="p-3">
                 <Tooltip title="Left over icon" placement="left">
-                    <i className="icon mdi mdi-chevron-left" style={{fontSize: "2em"}}></i>
+                    <i className="icon mdi mdi-chevron-left" style={{ fontSize: '2em' }} />
                 </Tooltip>
             </div>
         </div>
     ))
-    .add("over Button", () => (
+    .add('over Button', () => (
         <div>
             <div className="p-3">
                 <Tooltip title="Top over icon" placement="top">
@@ -88,10 +87,10 @@ storiesOf("Tooltip", module)
         </div>
     ));
 
-storiesOf("Panel", module)
+storiesOf('Panel', module)
     .addDecorator(centered)
     .addDecorator(checkA11y)
-    .add("Basic", () => (
+    .add('Basic', () => (
         <div className="col-4 offset-md-4">
             <Panel>
                 <PanelHeader>
@@ -104,7 +103,7 @@ storiesOf("Panel", module)
             </Panel>
         </div>
     ))
-    .add("Border Color", () => (
+    .add('Border Color', () => (
         <div className="container-fluid">
             <div className="row">
                 <div className="col-10 offset-1">
@@ -172,7 +171,7 @@ storiesOf("Panel", module)
             </div>
         </div>
     ))
-    .add("Contrast", () => (
+    .add('Contrast', () => (
         <div className="col-4 offset-md-4">
             <Panel border contrast>
                 <PanelHeader contrast>
@@ -187,4 +186,4 @@ storiesOf("Panel", module)
                 </PanelBody>
             </Panel>
         </div>
-    ));  
+    ));

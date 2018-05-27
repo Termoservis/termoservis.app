@@ -1,10 +1,10 @@
 /*Concurrent Tasks*/
 
 module.exports = {
-  options:{
-    logConcurrentOutput: true
-  },
-  dev:{
-    tasks: ['server','watch']
-  }
+    options:{
+        logConcurrentOutput: true
+    },
+    dev:{
+        tasks: ['server','watch']
+    }
 };

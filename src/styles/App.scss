@@ -1,3 +1,48 @@
-@import "../themes/beagle/dist/assets/lib/material-design-icons/css/material-design-iconic-font.min.css";
-@import "../themes/beagle/dist/assets/lib/perfect-scrollbar/css/perfect-scrollbar.min.css";
-@import "../themes/beagle/dist/assets/css/app.css";
+//Text contrast
+$company-color-text: red;
+$primary-color-text: #5f99f5;
+$success-color-text: #37b358;
+$warning-color-text: #f6c163;
+$danger-color-text: #eb6357;
+$dark-color-text: #333333;
+
+.navbar {
+    border-top: 2px solid $company-color-text;
+
+    .brand-logo-text {
+        height: 59px;
+        line-height: 60px;
+        padding-left: 16px;
+        font-size: 1.4em;
+        color: #333;
+
+        &:hover {
+            color: $company-color-text;
+        }
+    }
+
+    .users-search-bar {
+        i {
+            font-size: 1.6em;
+        }
+    }
+}
+
+.table-hover {
+    tr {
+        &:hover {
+            cursor: pointer;
+        }
+
+        td.actions.edit-user {
+            padding-right: 10px;
+
+            &:hover {
+                background-color: #ddd;
+                i {
+                    color: $dark-color-text;
+                }
+            }
+        }
+    }
+}

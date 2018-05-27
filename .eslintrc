@@ -1,3 +1,72 @@
 {
-  "extends": "react-app"
+    "extends": "react-app",
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "node": true
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaVersion": 8,
+        "ecmaFeatures": {
+            "jsx": true,
+            "impliedStrict": true
+        },
+        "sourceType": "module"
+    },
+    "rules": {
+        "react/jsx-indent": ["warn", 4],
+        "react/jsx-indent-props": ["warn", 4],
+        "indent": [
+            "error",
+            4,
+            {
+                "VariableDeclarator": {
+                    "var": 2,
+                    "let": 2,
+                    "const": 3
+                },
+                "ImportDeclaration": "first",
+                "flatTernaryExpressions": false,
+                "ObjectExpression": "first",
+                "CallExpression": { "arguments": "first" },
+                "FunctionExpression": { "parameters": "first" },
+                "FunctionDeclaration": { "parameters": "first" },
+                "MemberExpression": 1,
+                "SwitchCase": 1
+            }
+        ],
+        "require-jsdoc": [
+            "warn",
+            {
+                "require": {
+                    "FunctionDeclaration": true,
+                    "MethodDefinition": true,
+                    "ClassDeclaration": true,
+                    "ArrowFunctionExpression": true,
+                    "FunctionExpression": true
+                }
+            }
+        ],
+        "valid-jsdoc": "warn",
+        "linebreak-style": "off",
+        "no-undef": "off",
+        "curly": "off",
+        "no-continue": "off",
+        "no-plusplus": "off",
+        "prefer-template": "off",
+        "no-param-reassign": "off",
+        "no-use-before-define": 1,
+        "import/no-webpack-loader-syntax": "off",
+        "import/no-unresolved": "off",
+        "import/no-extraneous-dependencies": "off",
+        "no-console": 1,
+        "comma-dangle": "off",
+        "max-len": ["warn", 120],
+        "react/jsx-curly-spacing": "off",
+        "no-underscore-dangle": "off",
+        "class-methods-use-this": "off",
+        "react/forbid-prop-types": "off"
+    }
 }

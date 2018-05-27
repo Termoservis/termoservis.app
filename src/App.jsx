@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Redirect, Route, Link } from 'react-router-dom';
+import { Provider } from 'mobx-react';
 import NavLinkListItem from './components/NavLinkListItem/NavLinkListItem';
 
 import Login from './components/Login/Login';
@@ -8,7 +9,6 @@ import Tooltip from './components/Tooltip/Tooltip';
 import SessionManager from './managers/SessionManager';
 
 import './styles/App.css';
-import Button from './components/Button/Button';
 import Icon from './components/Icon/Icon';
 import Panel from './components/Panel/Panel';
 import PanelHeader from './components/Panel/PanelHeader';
@@ -20,7 +20,23 @@ import TableColumn from './components/Table/TableColumn';
 import TableBody from './components/Table/TableBody';
 import TableRow from './components/Table/TableRow';
 import TableCell from './components/Table/TableCell';
+import { action } from 'mobx';
 
+class LoginViewModel {
+    @action.bound
+    setUserName() {
+
+    }
+
+    @action.bound
+    setPassword() {
+
+    }
+}
+
+const stores = {
+    loginViewModel: new LoginViewModel()
+};
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
@@ -131,19 +147,21 @@ const routes = [
 ];
 
 const BasicExample = () => (
-    <Router>
-        <div>
-            {routes.map(route => (
-                <route.layout
-                    baseRoute={route.isPublic ? Route : PrivateRoute}
-                    key={route.path}
-                    path={route.path}
-                    exact={route.exact}
-                    component={route.main}
-                />
-            ))}
-        </div>
-    </Router>
+    <Provider {...stores}>
+        <Router>
+            <div>
+                {routes.map(route => (
+                    <route.layout
+                        baseRoute={route.isPublic ? Route : PrivateRoute}
+                        key={route.path}
+                        path={route.path}
+                        exact={route.exact}
+                        component={route.main}
+                    />
+                ))}
+            </div>
+        </Router>
+    </Provider>
 );
 
 const UsersIndex = () => (

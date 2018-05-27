@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { inject, observer } from 'mobx-react';
 import Button from '../Button/Button';
 import FormGroup from '../Form/FormGroup';
 import PasswordInput from '../Form/PasswordInput';
@@ -101,4 +102,22 @@ const Login = ({
 Login.propTypes = propTypes;
 Login.defaultProps = defaultProps;
 
-export default Login;
+@inject('loginViewModel')
+@observer
+class LoginView extends React.Component {
+    render() {
+        const {
+            setUserName,
+            setPassword,
+        } = this.props.loginViewModel;
+
+        return (
+            <Login
+                setUserName={setUserName}
+                setPassword={setPassword}
+            />
+        );
+    }
+}
+
+export default LoginView;

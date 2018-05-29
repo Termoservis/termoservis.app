@@ -1,4 +1,5 @@
 {
     "liveServer.settings.root": "/app/",
-    "eslint.autoFixOnSave": true
+    "eslint.autoFixOnSave": true,
+    "javascript.implicitProjectConfig.experimentalDecorators": true
 }

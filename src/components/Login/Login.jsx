@@ -20,6 +20,8 @@ const propTypes = {
     password: PropTypes.any,
     setUserName: PropTypes.func.isRequired,
     setPassword: PropTypes.func.isRequired,
+    loginCommandCanExecute: PropTypes.bool.isRequired,
+    loginCommandExecute: PropTypes.func.isRequired,
     isError: PropTypes.bool,
     errorMessage: PropTypes.string
 };
@@ -38,7 +40,7 @@ const defaultProps = {
  * @returns {React.ReactNode} Returns the react noce.
  */
 const Login = ({
-    isLoading, userName, password, setUserName, setPassword, isError, errorMessage
+    isLoading, userName, password, setUserName, setPassword, loginCommandCanExecute, loginCommandExecute, isError, errorMessage
 }) => (
     <div className="be-wrapper be-login">
         <div className="be-content">
@@ -60,7 +62,7 @@ const Login = ({
                                             placeholder="Korisničko ime ili email"
                                             autoComplete="off"
                                             value={userName}
-                                            onChange={e => setUserName && setUserName(e.target.value)}
+                                            onChange={e => setUserName && setUserName(e, e.target.value)}
                                         />
                                     </FormGroup>
                                     <FormGroup>
@@ -68,7 +70,7 @@ const Login = ({
                                             id="password"
                                             placeholder="Zaporka"
                                             value={password}
-                                            onChange={e => setPassword && setPassword(e.target.value)}
+                                            onChange={e => setPassword && setPassword(e, e.target.value)}
                                         />
                                     </FormGroup>
                                     <FormGroup className="row login-tools">
@@ -82,12 +84,18 @@ const Login = ({
                                     {isError ?
                                         <Alert color="danger" colorStyle="iconContrast" isDismissible={false}>
                                             <strong>Prijava</strong>
-                                            <p>Nevaljano korisničko ime ili zaporka.</p>
+                                            <p>{errorMessage}</p>
                                         </Alert>
                                         : null}
 
                                     <FormGroup className="login-submit">
-                                        <Button size="xl" color="primary">Prijava</Button>
+                                        <Button
+                                            size="xl"
+                                            color="primary"
+                                            disabled={!loginCommandCanExecute}
+                                            onClick={loginCommandExecute}
+                                        >Prijava
+                                        </Button>
                                     </FormGroup>
                                 </Form>
                             </PanelBody>
@@ -106,15 +114,31 @@ Login.defaultProps = defaultProps;
 @observer
 class LoginView extends React.Component {
     render() {
+        this.props.loginViewModel.location = this.props.location;
+        this.props.loginViewModel.history = this.props.history;
         const {
+            userName,
+            password,
             setUserName,
             setPassword,
+            loginCommandCanExecute,
+            loginCommandExecute,
+            isLoading,
+            isError,
+            errorMessage
         } = this.props.loginViewModel;
 
         return (
             <Login
+                userName={userName}
+                password={password}
                 setUserName={setUserName}
                 setPassword={setPassword}
+                loginCommandCanExecute={loginCommandCanExecute}
+                loginCommandExecute={loginCommandExecute}
+                isLoading={isLoading}
+                isError={isError}
+                errorMessage={errorMessage}
             />
         );
     }

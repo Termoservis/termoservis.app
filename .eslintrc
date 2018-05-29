@@ -52,6 +52,7 @@
         "valid-jsdoc": "warn",
         "linebreak-style": "off",
         "no-undef": "off",
+        "no-unused-vars": "off",
         "curly": "off",
         "no-continue": "off",
         "no-plusplus": "off",

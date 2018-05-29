@@ -1,6 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Redirect, Route, Link } from 'react-router-dom';
+import {
+    BrowserRouter as Router,
+    Redirect,
+    Route,
+    Link
+} from 'react-router-dom';
 import { Provider } from 'mobx-react';
+import { action, computed, observable } from 'mobx';
 import NavLinkListItem from './components/NavLinkListItem/NavLinkListItem';
 
 import Login from './components/Login/Login';
@@ -20,17 +26,71 @@ import TableColumn from './components/Table/TableColumn';
 import TableBody from './components/Table/TableBody';
 import TableRow from './components/Table/TableRow';
 import TableCell from './components/Table/TableCell';
-import { action } from 'mobx';
 
+/**
+ * The login view model.
+ *
+ * @class LoginViewModel
+ */
 class LoginViewModel {
-    @action.bound
-    setUserName() {
+    @observable isLoading;
+    @observable isError;
+    @observable errorMessage;
+    @observable userName;
+    @observable password;
 
+    location;
+    history;
+
+    /**
+     * Gets the login command can execute flag.
+     *
+     * @returns {bool} Returns true if login command can execute; false otherwise.
+     * @readonly
+     * @memberof LoginViewModel
+     */
+    @computed get loginCommandCanExecute() {
+        return (
+            this.userName != null &&
+            typeof this.userName === 'string' &&
+            this.userName.length > 0 &&
+            this.password != null &&
+            typeof this.password === 'string' &&
+            this.password.length > 0
+        );
     }
 
     @action.bound
-    setPassword() {
+    setUserName(e, value) {
+        this.isError = false;
+        this.userName = value;
+        if (e != null) e.preventDefault();
+    }
 
+    @action.bound
+    setPassword(e, value) {
+        this.isError = false;
+        this.password = value;
+        if (e != null) e.preventDefault();
+    }
+
+    @action.bound
+    async loginCommandExecute(e) {
+        if (!this.loginCommandCanExecute) return;
+        if (e != null) e.preventDefault();
+
+        this.isError = false;
+        this.isLoading = true;
+
+        try {
+            SessionManager.instance.authenticate('test');
+            this.history.push('/');
+        } catch (error) {
+            this.isError = true;
+            this.errorMessage = 'Server nije odgovorio na vrijeme. Pokušajte ponovo.';
+        }
+
+        this.isLoading = false;
     }
 }
 
@@ -56,7 +116,11 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
     />
 );
 
-const DefaultLayout = ({ baseRoute: BaseRoute, component: Component, ...rest }) => (
+const DefaultLayout = ({
+    baseRoute: BaseRoute,
+    component: Component,
+    ...rest
+}) => (
     <BaseRoute
         {...rest}
         component={matchProps => (
@@ -65,15 +129,26 @@ const DefaultLayout = ({ baseRoute: BaseRoute, component: Component, ...rest }) 
                     <div className="container-fluid">
                         <div className="be-navbar-header">
                             <Link to="/">
-                                <div className="text-uppercase brand-logo-text">Termoservis</div>
+                                <div className="text-uppercase brand-logo-text">
+                                    Termoservis
+                                </div>
                             </Link>
                         </div>
                         <div className="users-search-bar be-right-navbar be-right-navbar-flex">
                             <div className="search-container">
                                 <div className="input-group input-group-sm">
-                                    <input type="text" name="search" placeholder="Traži korisnika..." autoComplete="off" className="form-control search-input" />
+                                    <input
+                                        type="text"
+                                        name="search"
+                                        placeholder="Traži korisnika..."
+                                        autoComplete="off"
+                                        className="form-control search-input"
+                                    />
                                     <span className="input-group-btn">
-                                        <button type="button" className="btn btn-primary">
+                                        <button
+                                            type="button"
+                                            className="btn btn-primary"
+                                        >
                                             <i className="icon mdi mdi-search" />
                                         </button>
                                     </span>
@@ -84,7 +159,9 @@ const DefaultLayout = ({ baseRoute: BaseRoute, component: Component, ...rest }) 
                 </nav>
                 <div className="be-left-sidebar">
                     <div className="left-sidebar-wrapper">
-                        <Link to="/" className="left-sidebar-toggle">Početna</Link>
+                        <Link to="/" className="left-sidebar-toggle">
+                            Početna
+                        </Link>
                         <div className="left-sidebar-spacer">
                             <div className="left-sidebar-scroll">
                                 <div className="left-sidebar-content">
@@ -112,7 +189,11 @@ const DefaultLayout = ({ baseRoute: BaseRoute, component: Component, ...rest }) 
     />
 );
 
-const SplashScreenLayout = ({ baseRoute: BaseRoute, component: Component, ...rest }) => (
+const SplashScreenLayout = ({
+    baseRoute: BaseRoute,
+    component: Component,
+    ...rest
+}) => (
     <BaseRoute
         {...rest}
         component={matchedProps => (
@@ -129,20 +210,20 @@ const routes = [
         exact: true,
         isFullPage: false,
         layout: DefaultLayout,
-        main: () => <Home />
+        main: props => <Home {...props} />
     },
     {
         path: '/login',
         isPublic: true,
         isFullPage: true,
         layout: SplashScreenLayout,
-        main: () => <Login />
+        main: props => <Login {...props} />
     },
     {
         path: '/users',
         isFullPage: false,
         layout: DefaultLayout,
-        main: () => <UsersIndex />
+        main: props => <UsersIndex {...props} />
     }
 ];
 
@@ -172,7 +253,10 @@ const UsersIndex = () => (
                     <PanelHeader>
                         <span>Korisnici</span>
                         <PanelTools>
-                            <Tooltip title="Dodaj novog korisnika" placement="left">
+                            <Tooltip
+                                title="Dodaj novog korisnika"
+                                placement="left"
+                            >
                                 <Icon name="account-add" />
                             </Tooltip>
                         </PanelTools>
@@ -189,7 +273,9 @@ const UsersIndex = () => (
                             <TableBody>
                                 <TableRow>
                                     <TableCell>36 d.o.o. Mb</TableCell>
-                                    <TableCell>Matova 14, Zagreb, Čakovec</TableCell>
+                                    <TableCell>
+                                        Matova 14, Zagreb, Čakovec
+                                    </TableCell>
                                     <TableCell />
                                     <TableCell>23/06/2016</TableCell>
                                     <TableCell actions className="edit-user">

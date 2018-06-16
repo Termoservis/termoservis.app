@@ -3,7 +3,8 @@ import {
     BrowserRouter as Router,
     Redirect,
     Route,
-    Link
+    Link,
+    Switch
 } from 'react-router-dom';
 import { Provider } from 'mobx-react';
 import { action, computed, observable } from 'mobx';
@@ -220,6 +221,12 @@ const routes = [
         main: props => <Login {...props} />
     },
     {
+        path: '/users/:userid',
+        isFullPage: false,
+        layout: DefaultLayout,
+        main: props => <UserDetails {...props} />
+    },
+    {
         path: '/users',
         isFullPage: false,
         layout: DefaultLayout,
@@ -230,7 +237,7 @@ const routes = [
 const BasicExample = () => (
     <Provider {...stores}>
         <Router>
-            <div>
+            <Switch>
                 {routes.map(route => (
                     <route.layout
                         baseRoute={route.isPublic ? Route : PrivateRoute}
@@ -240,9 +247,163 @@ const BasicExample = () => (
                         component={route.main}
                     />
                 ))}
-            </div>
+            </Switch>
         </Router>
     </Provider>
+);
+
+const UserDetails = props => (
+    <div className="main-content container-flud">
+        <div className="row">
+            <div className="col-lg-5">
+                <div className="row">
+                    <div className="col">
+                        <Panel>
+                            <PanelHeader>
+                                <span>User User</span>
+                                <PanelTools>
+                                    <Tooltip title="Uredi korisnika" placement="bottom">
+                                        <Icon name="edit" />
+                                    </Tooltip>
+                                </PanelTools>
+                            </PanelHeader>
+                            <PanelBody>
+                                <div className="row">
+                                    <div className="col-4">
+                                        <div className="text-muted">SERVISA</div>
+                                        <div>123</div>
+                                    </div>
+                                    <div className="col-4">
+                                        <div className="text-muted">POPRAVAKA</div>
+                                        <div>123</div>
+                                    </div>
+                                    <div className="col-4">
+                                        <div className="text-muted">ZADNJI RADOVI</div>
+                                        <div>15.6.2018.</div>
+                                    </div>
+                                </div>
+                            </PanelBody>
+                        </Panel>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col">
+                        <Panel>
+                            <PanelHeader>
+                                <span>Adresa</span>
+                            </PanelHeader>
+                            <PanelBody>
+                                <div>A. G. Senoe 45<br />Zagreb, 10000<br />Hrvatska</div>
+                            </PanelBody>
+                        </Panel>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col">
+                        <Panel>
+                            <PanelHeader>
+                                <span>Kontakt</span>
+                            </PanelHeader>
+                            <PanelBody>
+                                <div>040 / 995 970</div>
+                            </PanelBody>
+                        </Panel>
+                    </div>
+                </div>
+            </div>
+            <div className="col-lg-7">
+                <Panel table>
+                    <PanelHeader>
+                        <span>Radovi</span>
+                        <PanelTools>
+                            <Tooltip title="Novi radni nalog" placement="bottom">
+                                <Icon name="plus" />
+                            </Tooltip>
+                        </PanelTools>
+                    </PanelHeader>
+                    <PanelBody>
+                        <Table hover>
+                            <TableHeader>
+                                <TableColumn>Naziv</TableColumn>
+                                <TableColumn>Adresa</TableColumn>
+                                <TableColumn>Bilješka</TableColumn>
+                                <TableColumn>Zadnji radovi</TableColumn>
+                                <TableColumn actions />
+                            </TableHeader>
+                            <TableBody>
+                                <TableRow>
+                                    <TableCell>36 d.o.o. Mb</TableCell>
+                                    <TableCell>
+                                        Matova 14, Zagreb, Čakovec
+                                    </TableCell>
+                                    <TableCell />
+                                    <TableCell>23/06/2016</TableCell>
+                                    <TableCell actions className="edit-user">
+                                        <Icon name="edit" />
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell>36 d.o.o. Mb</TableCell>
+                                    <TableCell>
+                                        Matova 14, Zagreb, Čakovec
+                                    </TableCell>
+                                    <TableCell />
+                                    <TableCell>23/06/2016</TableCell>
+                                    <TableCell actions className="edit-user">
+                                        <Icon name="edit" />
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell>36 d.o.o. Mb</TableCell>
+                                    <TableCell>
+                                        Matova 14, Zagreb, Čakovec
+                                    </TableCell>
+                                    <TableCell />
+                                    <TableCell>23/06/2016</TableCell>
+                                    <TableCell actions className="edit-user">
+                                        <Icon name="edit" />
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell>36 d.o.o. Mb</TableCell>
+                                    <TableCell>
+                                        Matova 14, Zagreb, Čakovec
+                                    </TableCell>
+                                    <TableCell />
+                                    <TableCell>23/06/2016</TableCell>
+                                    <TableCell actions className="edit-user">
+                                        <Icon name="edit" />
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell>36 d.o.o. Mb</TableCell>
+                                    <TableCell>
+                                        Matova 14, Zagreb, Čakovec
+                                    </TableCell>
+                                    <TableCell />
+                                    <TableCell>23/06/2016</TableCell>
+                                    <TableCell actions className="edit-user">
+                                        <Icon name="edit" />
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell>36 d.o.o. Mb</TableCell>
+                                    <TableCell>
+                                        Matova 14, Zagreb, Čakovec
+                                    </TableCell>
+                                    <TableCell />
+                                    <TableCell>23/06/2016</TableCell>
+                                    <TableCell actions className="edit-user">
+                                        <Icon name="edit" />
+                                    </TableCell>
+                                </TableRow>
+                            </TableBody>
+                        </Table>
+                    </PanelBody>
+                </Panel>
+            </div>
+        </div>
+    </div>
 );
 
 const UsersIndex = () => (

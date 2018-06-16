@@ -2,7 +2,7 @@ class SessionManager {
     static instance = null;
 
     token = null;
-    isAuthenticated = false;
+    isAuthenticated = true;
 
     authenticate(token) {
         this.token = token;

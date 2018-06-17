@@ -169,7 +169,7 @@ const DefaultLayout = ({
     <BaseRoute
         {...rest}
         component={matchProps => (
-            <div className="be-wrapper be-fixed-sidebar">
+            <div className="be-wrapper be-fixed-sidebar be-collapsible-sidebar-collapsed">
                 <nav className="navbar navbar-expand fixed-top be-top-header">
                     <div className="container-fluid">
                         <div className="be-navbar-header">
@@ -212,12 +212,20 @@ const DefaultLayout = ({
                                 <div className="left-sidebar-content">
                                     <ul className="sidebar-elements">
                                         <NavLinkListItem to="/" exact>
-                                            <i className="icon mdi mdi-home" />
-                                            <span>Početna</span>
+                                            <Tooltip title="Početna" placement="right">
+                                                <React.Fragment>
+                                                    <i className="icon mdi mdi-home" />
+                                                    <span>Početna</span>
+                                                </React.Fragment>
+                                            </Tooltip>
                                         </NavLinkListItem>
                                         <NavLinkListItem to="/users">
-                                            <i className="icon mdi mdi-accounts" />
-                                            <span>Korisnici</span>
+                                            <Tooltip title="Korisnici" placement="right">
+                                                <React.Fragment>
+                                                    <i className="icon mdi mdi-accounts" />
+                                                    <span>Korisnici</span>
+                                                </React.Fragment>
+                                            </Tooltip>
                                         </NavLinkListItem>
                                     </ul>
                                 </div>
@@ -329,14 +337,14 @@ const UserDetails = props => (
                                 </div>
                                 <div className="row">
                                     <div className="col-4">
-                                        <div>123</div>
+                                        <div className="h4 p-0 m-0">123</div>
                                     </div>
                                     <div className="col-4">
-                                        <div>123</div>
+                                        <div className="h4 p-0 m-0">123</div>
                                     </div>
                                     <div className="col-4">
                                         <Tooltip title="17.6.2018. 16:14" placement="bottom">
-                                            <div>{timeagoInstance.format('2018-06-17 16:14')}</div>
+                                            <div className="h4 p-0 m-0">{timeagoInstance.format('2018-06-17 16:14')}</div>
                                         </Tooltip>
                                     </div>
                                 </div>
@@ -381,7 +389,7 @@ const UserDetails = props => (
                                         <TableRow>
                                             <TableCell>VUW</TableCell>
                                             <TableCell>Vaillant</TableCell>
-                                            <TableCell></TableCell>
+                                            <TableCell />
                                         </TableRow>
                                     </TableBody>
                                 </Table>
@@ -512,13 +520,13 @@ const UsersIndex = () => (
                             </TableHeader>
                             <TableBody>
                                 <TableRow>
-                                    <TableCell>36 d.o.o. Mb</TableCell>
-                                    <TableCell>
+                                    <TableCell to="/users/123">36 d.o.o. Mb</TableCell>
+                                    <TableCell to="/users/123">
                                         Matova 14, Zagreb, Čakovec
                                     </TableCell>
-                                    <TableCell />
-                                    <TableCell>23/06/2016</TableCell>
-                                    <TableCell actions className="edit-user">
+                                    <TableCell to="/users/123" />
+                                    <TableCell to="/users/123">23/06/2016</TableCell>
+                                    <TableCell to="/users/123" actions className="edit-user">
                                         <Icon name="edit" />
                                     </TableCell>
                                 </TableRow>
@@ -532,9 +540,7 @@ const UsersIndex = () => (
 );
 
 const Home = () => (
-    <div>
-        <h2>Home</h2>
-    </div>
+    <div />
 );
 
 export default BasicExample;

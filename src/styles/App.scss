@@ -39,6 +39,17 @@ $dark-color-text: #333333;
                 cursor: pointer;
             }
 
+            td {
+                padding: 0;
+
+                a {
+                    display: block;
+                    padding: 12px 10px;
+                    color: inherit;
+                    text-decoration: inherit;
+                }
+            }
+
             td.actions.edit-user {
                 padding-right: 10px;
 

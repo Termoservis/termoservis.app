@@ -1,8 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { resolveColumnClassName } from './TableHelpers';
 
-const TableCell = ({ children, ...rest }) => (
-    <td className={resolveColumnClassName(rest)}>{children}</td>
+const TableCell = ({ to, children, ...rest }) => (
+    <td className={resolveColumnClassName(rest)}>
+        {to
+            ? (
+                <Link to={to}>{children}</Link>
+            )
+            : children}
+    </td>
 );
 
 export default TableCell;

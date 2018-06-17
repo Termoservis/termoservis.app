@@ -19,6 +19,11 @@ class Tooltip extends React.PureComponent {
         $(this.selfRef).tooltip();
     }
 
+    componentWillUnmount() {
+        const { $ } = window;
+        $(this.selfRef).tooltip('dispose');
+    }
+
     selfRef;
 
     render() {

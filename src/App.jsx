@@ -345,7 +345,7 @@ const UserDetails = props => (
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col">
+                    <div className="col-lg-6 col-md-6 col-sm-12">
                         <Panel>
                             <PanelHeader>
                                 <span>Adresa</span>
@@ -355,9 +355,7 @@ const UserDetails = props => (
                             </PanelBody>
                         </Panel>
                     </div>
-                </div>
-                <div className="row">
-                    <div className="col">
+                    <div className="col-lg-6 col-md-6 col-sm-12">
                         <Panel>
                             <PanelHeader>
                                 <span>Kontakt</span>
@@ -367,9 +365,32 @@ const UserDetails = props => (
                             </PanelBody>
                         </Panel>
                     </div>
+                    <div className="col-sm-12">
+                        <Panel table>
+                            <PanelHeader>
+                                <span>Uredaji</span>
+                            </PanelHeader>
+                            <PanelBody>
+                                <Table hover>
+                                    <TableHeader>
+                                        <TableColumn>Model</TableColumn>
+                                        <TableColumn>Proizvodac</TableColumn>
+                                        <TableColumn>Pusten u pogon</TableColumn>
+                                    </TableHeader>
+                                    <TableBody>
+                                        <TableRow>
+                                            <TableCell>VUW</TableCell>
+                                            <TableCell>Vaillant</TableCell>
+                                            <TableCell></TableCell>
+                                        </TableRow>
+                                    </TableBody>
+                                </Table>
+                            </PanelBody>
+                        </Panel>
+                    </div>
                 </div>
             </div>
-            <div className="col-lg-7">
+            <div className="col-lg-7 col-md-12">
                 <Panel>
                     <PanelHeader>
                         <span>Radovi</span>
@@ -454,6 +475,11 @@ const UserDetails = props => (
                         </ul>
                     </PanelBody>
                 </Panel>
+            </div>
+        </div>
+        <div className="row">
+            <div className="col">
+                <span className="text-muted">Korisnik je stvoren 08.11.2011 (test.test@test.com)</span>
             </div>
         </div>
     </div>

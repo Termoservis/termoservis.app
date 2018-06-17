@@ -7,6 +7,7 @@ import {
     Switch
 } from 'react-router-dom';
 import { Provider } from 'mobx-react';
+import ReactMarkdown from 'react-markdown';
 import { action, computed, observable } from 'mobx';
 import NavLinkListItem from './components/NavLinkListItem/NavLinkListItem';
 
@@ -260,7 +261,7 @@ const UserDetails = props => (
                     <div className="col">
                         <Panel>
                             <PanelHeader>
-                                <span>User User</span>
+                                <span><b>User User</b></span>
                                 <PanelTools>
                                     <Tooltip title="Uredi korisnika" placement="bottom">
                                         <Icon name="edit" />
@@ -268,17 +269,29 @@ const UserDetails = props => (
                                 </PanelTools>
                             </PanelHeader>
                             <PanelBody>
-                                <div className="row">
+                                <div className="text-muted">
+                                Nullam venenatis sollicitudin nulla, nec feugiat enim suscipit ac. Aliquam erat volutpat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus
+                                </div>
+                                <div className="row pt-2">
                                     <div className="col-4">
                                         <div className="text-muted">SERVISA</div>
-                                        <div>123</div>
                                     </div>
                                     <div className="col-4">
                                         <div className="text-muted">POPRAVAKA</div>
-                                        <div>123</div>
                                     </div>
                                     <div className="col-4">
                                         <div className="text-muted">ZADNJI RADOVI</div>
+                                    </div>
+
+                                </div>
+                                <div className="row">
+                                    <div className="col-4">
+                                        <div>123</div>
+                                    </div>
+                                    <div className="col-4">
+                                        <div>123</div>
+                                    </div>
+                                    <div className="col-4">
                                         <div>15.6.2018.</div>
                                     </div>
                                 </div>
@@ -312,7 +325,7 @@ const UserDetails = props => (
                 </div>
             </div>
             <div className="col-lg-7">
-                <Panel table>
+                <Panel>
                     <PanelHeader>
                         <span>Radovi</span>
                         <PanelTools>
@@ -322,83 +335,78 @@ const UserDetails = props => (
                         </PanelTools>
                     </PanelHeader>
                     <PanelBody>
-                        <Table hover>
-                            <TableHeader>
-                                <TableColumn>Naziv</TableColumn>
-                                <TableColumn>Adresa</TableColumn>
-                                <TableColumn>Bilješka</TableColumn>
-                                <TableColumn>Zadnji radovi</TableColumn>
-                                <TableColumn actions />
-                            </TableHeader>
-                            <TableBody>
-                                <TableRow>
-                                    <TableCell>36 d.o.o. Mb</TableCell>
-                                    <TableCell>
-                                        Matova 14, Zagreb, Čakovec
-                                    </TableCell>
-                                    <TableCell />
-                                    <TableCell>23/06/2016</TableCell>
-                                    <TableCell actions className="edit-user">
-                                        <Icon name="edit" />
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell>36 d.o.o. Mb</TableCell>
-                                    <TableCell>
-                                        Matova 14, Zagreb, Čakovec
-                                    </TableCell>
-                                    <TableCell />
-                                    <TableCell>23/06/2016</TableCell>
-                                    <TableCell actions className="edit-user">
-                                        <Icon name="edit" />
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell>36 d.o.o. Mb</TableCell>
-                                    <TableCell>
-                                        Matova 14, Zagreb, Čakovec
-                                    </TableCell>
-                                    <TableCell />
-                                    <TableCell>23/06/2016</TableCell>
-                                    <TableCell actions className="edit-user">
-                                        <Icon name="edit" />
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell>36 d.o.o. Mb</TableCell>
-                                    <TableCell>
-                                        Matova 14, Zagreb, Čakovec
-                                    </TableCell>
-                                    <TableCell />
-                                    <TableCell>23/06/2016</TableCell>
-                                    <TableCell actions className="edit-user">
-                                        <Icon name="edit" />
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell>36 d.o.o. Mb</TableCell>
-                                    <TableCell>
-                                        Matova 14, Zagreb, Čakovec
-                                    </TableCell>
-                                    <TableCell />
-                                    <TableCell>23/06/2016</TableCell>
-                                    <TableCell actions className="edit-user">
-                                        <Icon name="edit" />
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell>36 d.o.o. Mb</TableCell>
-                                    <TableCell>
-                                        Matova 14, Zagreb, Čakovec
-                                    </TableCell>
-                                    <TableCell />
-                                    <TableCell>23/06/2016</TableCell>
-                                    <TableCell actions className="edit-user">
-                                        <Icon name="edit" />
-                                    </TableCell>
-                                </TableRow>
-                            </TableBody>
-                        </Table>
+                        <ul className="user-timeline">
+                            <li className="latest service">
+                                <Tooltip placement="left" title="16.6.2018. 14:35">
+                                    <div className="user-timeline-date">Upravo</div>
+                                </Tooltip>
+                                <div className="user-timeline-title">Servis</div>
+                                <div className="user-timeline-description">
+                                    <ReactMarkdown source="- nadopunjavanje sistema grijanja" />
+                                </div>
+                                <div className="row pt-2">
+                                    <div className="col">Neven</div>
+                                    <div className="col text-center">VUV-200</div>
+                                    <div className="col text-right">300 kn</div>
+                                </div>
+                            </li>
+                            <li className="repair latest">
+                                <Tooltip placement="left" title="14.6.2018. 14:35">
+                                    <div className="user-timeline-date">Prije dva dana</div>
+                                </Tooltip>
+                                <div className="user-timeline-title">Popravak</div>
+                                <div className="user-timeline-description">
+                                    <ReactMarkdown source="- nadopunjavanje sistema grijanja" />
+                                </div>
+                                <div className="row pt-2">
+                                    <div className="col">Neven</div>
+                                    <div className="col text-center">VUV-200</div>
+                                    <div className="col text-right">300 kn</div>
+                                </div>
+                            </li>
+                            <li className="commision latest">
+                                <Tooltip placement="left" title="16.5.2018. 14:35">
+                                    <div className="user-timeline-date">Prije mjesec dana</div>
+                                </Tooltip>
+                                <div className="user-timeline-title">Pustanje u pogon</div>
+                                <div className="user-timeline-description">
+                                    <ReactMarkdown source="- nadopunjavanje sistema grijanja" />
+                                </div>
+                                <div className="row pt-2">
+                                    <div className="col">Neven</div>
+                                    <div className="col text-center">VUV-200</div>
+                                    <div className="col text-right">300 kn</div>
+                                </div>
+                            </li>
+                            <li className="warranty latest">
+                                <Tooltip placement="left" title="16.5.2018. 14:35">
+                                    <div className="user-timeline-date">Prije 6 mjeseci</div>
+                                </Tooltip>
+                                <div className="user-timeline-title">Radovi u jamstvu</div>
+                                <div className="user-timeline-description">
+                                    <ReactMarkdown source="- nadopunjavanje sistema grijanja" />
+                                </div>
+                                <div className="row pt-2">
+                                    <div className="col">Neven</div>
+                                    <div className="col text-center">VUV-200</div>
+                                    <div className="col text-right">300 kn</div>
+                                </div>
+                            </li>
+                            <li className="service-repair latest">
+                                <Tooltip placement="left" title="16.5.2018. 14:35">
+                                    <div className="user-timeline-date">Prije 2 godine</div>
+                                </Tooltip>
+                                <div className="user-timeline-title">Servis i popravak</div>
+                                <div className="user-timeline-description">
+                                    <ReactMarkdown source="- nadopunjavanje sistema grijanja" />
+                                </div>
+                                <div className="row pt-2">
+                                    <div className="col">Neven</div>
+                                    <div className="col text-center">VUV-200</div>
+                                    <div className="col text-right">300 kn</div>
+                                </div>
+                            </li>
+                        </ul>
                     </PanelBody>
                 </Panel>
             </div>

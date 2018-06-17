@@ -52,3 +52,38 @@ $dark-color-text: #333333;
         }
     }
 }
+
+.user-timeline {
+    &:before {
+        background-color: #ddd;
+    }
+    &:after {
+        background-color: #aaa;
+    }
+    li {
+        &.repair:before {
+            border-color: $danger-color-text;
+        }
+        &.repair.latest:before {
+            background-color: $danger-color-text;
+        }
+        &.commision:before {
+            border-color: $success-color-text;
+        }
+        &.commision.latest:before {
+            background-color: $success-color-text;
+        }
+        &.warranty:before {
+            border-color: $warning-color-text;
+        }
+        &.warranty.latest:before {
+            background-color: $warning-color-text;
+        }
+        &.service-repair:before {
+            border-color: #AB7C9F;
+        }
+        &.service-repair.latest:before {
+            background-color: #AB7C9F;
+        }
+    }
+}

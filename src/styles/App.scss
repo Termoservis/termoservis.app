@@ -35,12 +35,12 @@ $dark-color-text: #333333;
 
     tbody {
         tr {
-            &:hover {
-                cursor: pointer;
-            }
-
-            td {
+            td.link {
                 padding: 0;
+                
+                &:hover {
+                    cursor: pointer;
+                }
 
                 a {
                     display: block;

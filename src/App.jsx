@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import { Provider } from 'mobx-react';
 import ReactMarkdown from 'react-markdown';
+import timeago from 'timeago.js';
 import { action, computed, observable } from 'mobx';
 import NavLinkListItem from './components/NavLinkListItem/NavLinkListItem';
 
@@ -28,6 +29,48 @@ import TableColumn from './components/Table/TableColumn';
 import TableBody from './components/Table/TableBody';
 import TableRow from './components/Table/TableRow';
 import TableCell from './components/Table/TableCell';
+
+// the local dict example is below.
+// genitive plural form for all other numbers excluding cases below:
+// 14-20: nominative plural form for the numbers 2,3,4
+// and all other numbers higher than 21 which end in 2,3,4
+const hrTimeAgoLocal = function (number, index) {
+    // number: the timeago / timein number;
+    // index: the index of array below;
+    // total_sec: total seconds between date to be formatted and today's date;
+    const l = [
+        ['upravo', 'upravo'],
+        ['prije %s sekundi', 'za %s sekundi'],
+        ['prije 1 minute', 'za 1 minutu'],
+        ['prije %s minuta', 'za %s minuta'],
+        ['prije 1 sat', 'za 1 sat'],
+        ['prije %s sati', 'za %s sati'],
+        ['prije 1 dan', 'za 1 dan'],
+        ['prije %s dana', 'za %s dana'],
+        ['prije 1 tjedan', 'za 1 tjedan'],
+        ['prije %s tjedana', 'za %s tjedana'],
+        ['prije 1 mjesec', 'za 1 mjesec'],
+        ['prije %s mjeseci', 'in %s mjeseci'],
+        ['prije 1 godine', 'za 1 godinu'],
+        ['prije %s godine', 'za %s godina'],
+        ['prije %s sekunde', 'za %s sekunde'],
+        ['prije %s minute', 'za %s minute'],
+        ['prije %s sata', 'za %s sata'],
+        ['prije %s dana', 'za %s dana'],
+        ['prije %s tjedna', 'za %s tjedna'],
+        ['prije %s mjeseca', 'za %s mjeseca'],
+        ['prije %s godine', 'za %s godine']
+    ];
+
+    const isOdd = index % 2 === 1;
+    if (!isOdd)
+        return l[index];
+    return l[number % 10 > 4 || number % 10 < 1 || Math.floor(number / 10) % 10 === 1 ? index : (++index / 2) + 13];
+};
+// register your locale with timeago
+timeago.register('hr', hrTimeAgoLocal);
+const timeagoInstance = timeago();
+timeagoInstance.setLocale('hr');
 
 /**
  * The login view model.
@@ -292,7 +335,9 @@ const UserDetails = props => (
                                         <div>123</div>
                                     </div>
                                     <div className="col-4">
-                                        <div>15.6.2018.</div>
+                                        <Tooltip title="17.6.2018. 16:14" placement="bottom">
+                                            <div>{timeagoInstance.format('2018-06-17 16:14')}</div>
+                                        </Tooltip>
                                     </div>
                                 </div>
                             </PanelBody>
@@ -338,7 +383,7 @@ const UserDetails = props => (
                         <ul className="user-timeline">
                             <li className="latest service">
                                 <Tooltip placement="left" title="16.6.2018. 14:35">
-                                    <div className="user-timeline-date">Upravo</div>
+                                    <div className="user-timeline-date">{timeagoInstance.format('2018-06-17 15:45')}</div>
                                 </Tooltip>
                                 <div className="user-timeline-title">Servis</div>
                                 <div className="user-timeline-description">
@@ -351,8 +396,8 @@ const UserDetails = props => (
                                 </div>
                             </li>
                             <li className="repair latest">
-                                <Tooltip placement="left" title="14.6.2018. 14:35">
-                                    <div className="user-timeline-date">Prije dva dana</div>
+                                <Tooltip placement="left" title="16.6.2018. 14:35">
+                                    <div className="user-timeline-date">{timeagoInstance.format('2018-06-16 14:35')}</div>
                                 </Tooltip>
                                 <div className="user-timeline-title">Popravak</div>
                                 <div className="user-timeline-description">
@@ -366,7 +411,7 @@ const UserDetails = props => (
                             </li>
                             <li className="commision latest">
                                 <Tooltip placement="left" title="16.5.2018. 14:35">
-                                    <div className="user-timeline-date">Prije mjesec dana</div>
+                                    <div className="user-timeline-date">{timeagoInstance.format('2018-05-17 14:35')}</div>
                                 </Tooltip>
                                 <div className="user-timeline-title">Pustanje u pogon</div>
                                 <div className="user-timeline-description">
@@ -380,7 +425,7 @@ const UserDetails = props => (
                             </li>
                             <li className="warranty latest">
                                 <Tooltip placement="left" title="16.5.2018. 14:35">
-                                    <div className="user-timeline-date">Prije 6 mjeseci</div>
+                                    <div className="user-timeline-date">{timeagoInstance.format('2018-01-15 14:35')}</div>
                                 </Tooltip>
                                 <div className="user-timeline-title">Radovi u jamstvu</div>
                                 <div className="user-timeline-description">
@@ -394,7 +439,7 @@ const UserDetails = props => (
                             </li>
                             <li className="service-repair latest">
                                 <Tooltip placement="left" title="16.5.2018. 14:35">
-                                    <div className="user-timeline-date">Prije 2 godine</div>
+                                    <div className="user-timeline-date">{timeagoInstance.format('2016-06-17 14:35')}</div>
                                 </Tooltip>
                                 <div className="user-timeline-title">Servis i popravak</div>
                                 <div className="user-timeline-description">

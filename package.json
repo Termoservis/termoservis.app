@@ -27,7 +27,8 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
     "sass-loader": "^7.0.1",
-    "style-loader": "^0.21.0"
+    "style-loader": "^0.21.0",
+    "timeago.js": "^3.0.2"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/styles/ -o src/styles/",

@@ -4,6 +4,7 @@
  "description": "The Termoservis Beagle theme.",
  "author": "Termoservis",
  "homepage": "https://termoservis.hr",
+ "license": "https://raw.githubusercontent.com/Termoservis/termoservis.app/master/LICENSE.txt",
  "dependencies": {
   "@foxythemes/material-design-iconic-font": "^2.2.1",
   "Gritter": "git+https://github.com/foxythemes/Gritter.git#master",

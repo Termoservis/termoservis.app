@@ -9,7 +9,6 @@ import {
 import { Provider } from 'mobx-react';
 import ReactMarkdown from 'react-markdown';
 import timeago from 'timeago.js';
-import { action, computed, observable } from 'mobx';
 import NavLinkListItem from './components/NavLinkListItem/NavLinkListItem';
 import LoginViewModel from './components/Login/LoginViewModel';
 

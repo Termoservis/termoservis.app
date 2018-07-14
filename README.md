@@ -14,7 +14,7 @@ Start storyboard:
 
 `yarn storybook`
 
-## Dependencies
+## Manual Dependencies
 
 | Name             | Version  | Type    | Description               |
 | ---------------- | -------- | ------- | ------------------------- |

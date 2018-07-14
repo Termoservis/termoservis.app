@@ -67,3 +67,5 @@ class LoginViewModel {
         this.isLoading = false;
     }
 }
+
+export default LoginViewModel;

@@ -16,6 +16,6 @@ Start storyboard:
 
 ## Dependencies
 
-| Name | Version | Type | Description |
-| ---- | ------- | ---- | ----------- |
+| Name             | Version  | Type    | Description               |
+| ---------------- | -------- | ------- | ------------------------- |
 | Bootstrap Beagle | `v1.4.2` | `theme` | Bootstrap dashboard theme |

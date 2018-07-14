@@ -1,9 +1,9 @@
 /*------------------------------------------------------------------
   [Page aside]
 */
-.be-aside{
+.be-aside {
 
-	.main-content{
+	.main-content {
 		margin-left: $page-aside-width;
     width: auto;
 
@@ -21,8 +21,8 @@
   }
 }
 
-.page-aside{
-  background: none repeat scroll 0 0 theme-color("light");
+.page-aside {
+  background: none repeat scroll 0 0 $page-aside-bg;
   width: $page-aside-width;
   height: 100%;
   position: fixed;
@@ -31,18 +31,19 @@
   border-right: 1px solid darken(theme-color("light"), 10%);
   margin-top: $top-header-height + 1px;
 	padding-bottom: $top-header-height + 1px;
+  color: $page-aside-text-color;
 
   .no-border & {
     border-width: 0;
   }
 
-  .be-scroller{
+  .be-scroller {
     position: relative;
     height: 100%;
     width: 100%;
   }
 
-  .content{
+  .content {
   	padding: 20px $page-aside-padding;
     position: relative;
   }
@@ -59,10 +60,10 @@
 	}
 }
 
-.aside-header{
+.aside-header {
   margin-bottom: 5px;
 
-  .title{
+  .title {
     display: block;
     margin: 16px 0 0;
     font-size: $page-aside-title-size;
@@ -70,7 +71,7 @@
     font-weight: $font-weight-light;
   }
 
-  .navbar-toggle{
+  .navbar-toggle {
     background:rgba(0, 0, 0, 0);
     display: none;
     outline: none;
@@ -89,61 +90,64 @@
       display: block;
     }
 
-    .icon{
+    .icon {
       font-size: 1.538rem;
       color: lighten($body-color, 50%)
     }
   }
 
-  .description{
+  .description {
     color: lighten($body-color, 10%);
     margin: 0;
   }
 }
 
-.aside-nav{
-  display: block;
+.aside-nav {
   visibility: visible;
 
-  .nav{
+  &.collapse {
+    display: block;
+  }
 
-    li{
+  .nav {
 
-      a{
+    li {
+
+      a {
         color: $body-color;
         padding: 13px $page-aside-padding;
       }
 
-      &.active{
+      &.active {
         
-        a{
+        a {
           color: theme-color("primary");
 
-          .icon{
+          .icon {
             color: theme-color("primary");
           }
         }
       }
 
-      .badge{
+      .badge {
         float: right;
         font-size: .9231rem;
         font-weight: $font-weight-light;
         padding: 1px 7px;
       }
 
-      .icon{
+      .icon {
         font-size: 1.462rem;
         vertical-align: middle;
         text-align: center;
         min-width: 19px;
-        margin-right: 3px;
+        margin-right: 6px;
         color: lighten($body-color, 13%);
       }
-    } 
+    }
   }
 
-  .title{
+  .title {
     display: block;
     color: lighten($body-color, 35%);
     font-size: .8462rem;
@@ -156,11 +160,11 @@
   @include tablet {
     border-bottom: 1px solid darken(theme-color("light"), 10%);
 
-    &.collapse{
+    &.collapse {
       display: none;
     }
 
-    &.show{
+    &.show {
       display: block;
     }
   }
@@ -174,7 +178,7 @@
 
 //==Email inbox page
 //Inbox header
-.be-aside-header{
+.be-aside-header {
   background-color: theme-color("light");
   padding: 37px 25px;
 
@@ -184,7 +188,7 @@
 }
 
 //Inbox title
-.be-aside-header-title{
+.be-aside-header-title {
   display: block;
   margin: 3px 0 0;
   font-size: 1.769rem;
@@ -194,12 +198,12 @@
     margin-bottom: 10px;
   }
 
-  .icon{
+  .icon {
     font-size: 1.769rem;
     color: lighten($body-color, 20%)
   }
 
-  .new-messages{
+  .new-messages {
     font-size: $font-size-base;
     color: lighten($body-color, 30%);
     margin-left: 3px;
@@ -207,7 +211,7 @@
 }
 
 //Inbox filters
-.be-aside-header-filters{
+.be-aside-header-filters {
   padding: 0 20px 30px;
   border-bottom: 1px solid darken(theme-color("light"), 10%);
   background-color: theme-color("light");
@@ -215,13 +219,13 @@
   width: 100%;
 
   .dropdown-toggle {
-  
+
     &:after {
       display: inline-block;
     }
   }
 
-  > div{
+  > div {
     display: table-cell;
     vertical-align: middle;
 
@@ -230,34 +234,34 @@
     }
   }
 
-  .btn-group + .btn-group{
+  .btn-group + .btn-group {
 
     @include laptop {
       margin-left: 0;
     }
   }
 
-  .be-select-all.be-checkbox{
+  .be-select-all.be-checkbox {
     display: inline-block;
     vertical-align: middle;
     padding: 0;
 
-    label:before{
+    label:before {
       margin-right: 18px;
     }
   }
 
-  .be-aside-header-filters-right{
+  .be-aside-header-filters-right {
     text-align: right;
   }
 
-  input{
+  input {
     margin-right: 8px;
   }
 }
 
 //Pagination text
-.be-aside-pagination-indicator{
+.be-aside-pagination-indicator {
   display: inline-block;
   vertical-align: middle;
   margin-right: 13px;
@@ -268,12 +272,12 @@
 }
 
 //Pagination buttons nav
-.be-aside-pagination-nav{
+.be-aside-pagination-nav {
 
-  .btn{
+  .btn {
     min-width: 30px;
 
-    i{
+    i {
       font-size: 1.615rem;
       vertical-align: middle;
     }

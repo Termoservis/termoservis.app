@@ -9,11 +9,16 @@
   font-size: $font-size-base + 0.1538rem;
   transition: none;
   height: $input-height;
+  -webkit-appearance:none;
 }
 
 .form-control[multiple] {
   padding: 0;
 
+  @supports #{$ios} {
+    padding: 10px 12px;;
+  }
+  
   option {
     padding: 8px 12px;
   }
@@ -22,6 +27,7 @@
 // Remove padding bottom
 .col-form-label {
   padding-bottom: 0;
+  line-height: 1;
 
   @include phone {
     padding-bottom: 8px;      
@@ -123,10 +129,18 @@ select.form-control-xs {
 //Input group addon
 .input-group-prepend, .input-group-append {
 
+  .custom-control-label {
+    position: static;
+
+    &:before,
+    &:after {
+      left: 0;
+    }
+  }
+
   .custom-control {
     width: $input-check-component-size + .07692rem;
     height: $input-check-component-size + .07692rem;
-    top: 2px;
   }
 
   .input-group-text {
@@ -185,5 +199,24 @@ select.form-control-xs {
    + span {
       color: theme-color("danger"); 
     } 
+  }
+}
+
+.form-title {
+  font-size: 1.385rem;
+  font-weight: 400;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0.2384rem;
+  padding-bottom: 1.031rem;
+  margin: 0 0 13px;
+  border-bottom-width: 0;
+  border-radius: 3px 3px 0 0;
+  background-color: transparent;
+  border-bottom: 1px solid #d9d9d9;
+
+  .form-subtitle {
+    font-size: 1rem;
+    color: #707070;
   }
 }

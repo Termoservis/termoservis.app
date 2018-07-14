@@ -14,4 +14,24 @@
 			}	
   	}
 	}
+
+  &.nav-tabs-classic {
+
+    > li.nav-item {
+
+      a.nav-link {
+
+        &.active {
+          border-bottom: 0;
+          background-color: $color;
+          color: $white;
+        }
+      }
+    }
+
+    & + .tab-content {
+      background-color: $color;
+      color: $white;
+    }
+  }
 }

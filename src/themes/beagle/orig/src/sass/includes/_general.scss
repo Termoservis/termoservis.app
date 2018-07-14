@@ -11,7 +11,8 @@ html{
 body {
 	padding: 0;
 	background-color: $body-background;
-	height: 100%;
+	height: auto;
+	min-height: 100%;
 	line-height: 1.42857143;
 
 	&.be-alt-bg {

@@ -3,9 +3,20 @@
 */
 .select2-container--default{
 
+	.input-group & {
+		position: relative;
+    flex: 1 1 auto;
+    width: 1% !important;
+	}
+
 	.select2-selection--single, .select2-selection--multiple{
 		border: $select2-border-width solid $input-border-color;
 		border-radius: $border-radius;
+
+		&:focus {
+			border-color: #4285f4;
+	    outline: 0;
+		}
 	}
 
 	.select2-selection--single{
@@ -82,6 +93,9 @@
 
 		.select2-search--inline .select2-search__field{
 			line-height: $input-height - 1.692rem;
+			font-family: $roboto;
+			font-size: 1.077rem;
+			color: #999;
 		}
 	}
 

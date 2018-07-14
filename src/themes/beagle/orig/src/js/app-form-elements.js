@@ -15,7 +15,8 @@ var App = (function () {
     
     //Select2
     $(".select2").select2({
-      width: '100%'
+      width: '100%',
+      placeholder: 'Select a state'
     });
     
     //Select2 tags

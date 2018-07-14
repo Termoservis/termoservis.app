@@ -55,7 +55,7 @@
       margin-right: 4px;
 
       &.custom-control {
-        margin-bottom: .7rem;
+        margin-bottom: 1rem;
       }
 
       input[type="checkbox"]{
@@ -66,10 +66,9 @@
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-          line-height: 1.8;
+          line-height: 1.4;
 
           &::before {
-            margin-top: 5px;
             margin-right: 8px;
           }
         }
@@ -77,10 +76,6 @@
         &:checked ~ .custom-control-label {
           text-decoration: line-through;
           color: lighten($body-color, 35%);
-
-          &::after {
-            margin-top: 5px;  
-          }
         }
       }
 

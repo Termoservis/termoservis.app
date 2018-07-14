@@ -14,7 +14,7 @@
 		}
 		
 		.progress-data{
-			color: $left-sidebar-color;
+			color: $left-sidebar-text-color;
 		}
 
 		.progress-value{
@@ -37,7 +37,7 @@
 		.progress{
 			margin: 10px 0 0;
 			height: 8px;
-			background-color: darken($left-sidebar-bg, 4%);
+			background-color: $left-sidebar-progress-bar-bg-color;
 			border-radius: 2px;
 
 			.be-collapsible-sidebar-collapsed & { 
@@ -48,10 +48,6 @@
 
 		&:hover{
 			background-color: darken($left-sidebar-bg, 2%);
-
-			.progress{
-				background-color: darken($left-sidebar-bg, 6%);
-			}
 		}
 
 		@include tablet {

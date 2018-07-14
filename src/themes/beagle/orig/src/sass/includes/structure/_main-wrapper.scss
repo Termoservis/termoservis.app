@@ -13,7 +13,7 @@
 		padding-top: 0;
 	}
 
-	@include non-responsive{		
+	@include non-responsive{
 		&.be-boxed-layout {
 			max-width: $boxed-layout-width;
 	    position: relative;

@@ -7,14 +7,23 @@
 .custom-control {
   min-height: $custom-control-indicator-size;
   min-width: $custom-control-indicator-size;
-  margin-bottom: .923rem;
+  margin-top: $custom-control-vertical-padding;
+  margin-bottom: $custom-control-vertical-padding + .923rem;
+}
+
+.custom-control-label {
+	position: static;
+	display: inline-block;
+	line-height: $custom-control-label-line-height;
+
+	&:before,
+	&:after {
+		top: 0;
+		left: 0;
+	}
 }
 
 .custom-control-input {
-
-	.custom-control-label {
-		line-height: 1.6;
-	}
 
   &:checked ~ .custom-control-label::after {
     color: theme-color("primary"); 
@@ -38,18 +47,23 @@
 // Checkboxes
 .custom-checkbox {
 
-	.custom-control-label::before {
-		content: "";
-		width: $input-check-component-size;
-		height: $input-check-component-size;
-		border: $input-check-component-border;
-		border-radius: $input-check-component-border-radius;
+	.custom-control-label {
+
+		&:before {
+			content: "";
+			width: $input-check-component-size;
+			height: $input-check-component-size;
+			border: $input-check-component-border;
+			border-radius: $input-check-component-border-radius;
+			margin: $input-check-component-margin;
+		}
 	}
 
   .custom-control-input:checked ~ .custom-control-label::after {
   	content: "\f26b";
 		font-size: $input-check-component-size - .1538rem;
 		font-family: $icons-font;
+		margin: $input-check-component-margin;
 		font-weight: normal;
 		text-align: center;
 		line-height: 1.1;
@@ -59,17 +73,22 @@
 // Radios
 .custom-radio {
 
-	.custom-control-label::before {
-		border: 1px solid $input-border-color;
-		width: $input-check-component-size + .07692rem;
-		height: $input-check-component-size + .07692rem;
-		content: "";
+	.custom-control-label {
+
+		&:before {
+			content: "";
+			border: 1px solid $input-border-color;
+			width: $input-check-component-size + .07692rem;
+			height: $input-check-component-size + .07692rem;			
+			margin: $input-check-component-margin;
+		}
 	}
 
   .custom-control-input:checked ~ .custom-control-label::after {		
   	content: "\f26d";
   	width: $input-check-component-size + .07692rem;
 		height: $input-check-component-size + .07692rem;
+		margin: $input-check-component-margin;
   	font-size: 1rem;
   	font-family: $icons-font;
   	text-align: center;
@@ -134,10 +153,6 @@
 	min-width: 1.38462rem;
 	min-height: 1.38462rem;
 
-	&.custom-control {
-		top: 2px;
-	}
-
 	.custom-control-input {
 
 		~ .custom-control-label {
@@ -155,7 +170,7 @@
 				height: 1.38462rem;
 				font-size: 15px;
 				right: 0;
-				line-height: 1.3;
+				line-height: 1.2;
 				vertical-align: top;
 			}
 		}	

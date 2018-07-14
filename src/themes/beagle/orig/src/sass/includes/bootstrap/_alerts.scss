@@ -75,6 +75,24 @@
 	@include contrast-alert-variation($alert-danger-bg);
 }
 
+.alert-light {
+	background-color: $alert-light-bg;
+	outline: 1px solid $light-bg;
+	@include text-color-variation($state-light-text);
+
+	> .icon {
+		@include text-color-variation($alert-light-icon-color);
+	}
+
+	&.alert-contrast > .icon{
+		background-color: $light-bg;
+	}
+}
+
+.alert-dark {
+	@include contrast-alert-variation($alert-dark-bg);
+}
+
 .alert-dismissible{
 
 	&.alert-primary{
@@ -85,12 +103,38 @@
 		@include dismissible-variation($alert-success-bg)
 	}
 
+	&.alert-info{
+		@include dismissible-variation($alert-info-bg)
+	}
+
 	&.alert-warning{
 		@include dismissible-variation($alert-warning-bg)
 	}
 
 	&.alert-danger{
 		@include dismissible-variation($alert-danger-bg)
+	}
+
+	&.alert-light{
+		.close{ 
+			color: $body-color;
+			opacity: 0.35;
+
+			&:hover{
+				opacity: 0.5;
+			}
+		}
+	}
+
+	&.alert-dark{
+		.close{ 
+			color: $body-color;
+			opacity: 0.35;
+
+			&:hover{
+				opacity: 0.5;
+			}
+		}	
 	}
 }
 
@@ -110,7 +154,6 @@
 		display: table-cell;
 		padding: $alert-padding-y $alert-padding-x;
 		border-left-width: 0;
-		color: theme-color("light");
 
 		@include phone {
 			padding: $alert-padding-y ($alert-padding-x + 1.154rem) $alert-padding-y $alert-padding-x;			
@@ -135,7 +178,6 @@
 		text-align: center;
 		vertical-align: middle;
 		cursor: default;
-		color: theme-color("light");
 
 		&:after{
 			position: absolute;
@@ -172,19 +214,48 @@
 
 	//Colors
 	&.alert-primary{
-		@include icon-alert-variation($alert-primary-bg)
+		@include icon-alert-variation($alert-primary-bg);
 	}
 	
 	&.alert-success{
-		@include icon-alert-variation($alert-success-bg)
+		@include icon-alert-variation($alert-success-bg);
+	}
+
+	&.alert-info{
+		@include icon-alert-variation($alert-info-bg);
 	}
 
 	&.alert-warning{
-		@include icon-alert-variation($alert-warning-bg)
+		@include icon-alert-variation($alert-warning-bg);
 	}
 
 	&.alert-danger{
-		@include icon-alert-variation($alert-danger-bg)
+		@include icon-alert-variation($alert-danger-bg);
+	}
+
+	&.alert-light{
+		@include icon-alert-variation($alert-light-bg);
+		outline-color: darken(theme-color("light"), 17%);
+
+		> .icon {
+			border-right: 1px solid darken(theme-color("light"), 17%);
+
+			&:before {
+				position: absolute;
+				right: -22px;
+				top: 50%;
+				margin-top: -10px;
+				@include special-light-triangle();
+			}
+		}
+
+		> .message{
+			border: 0px;
+		}
+	}
+
+	&.alert-dark{
+		@include icon-alert-variation($alert-dark-bg);
 	}
 }
 
@@ -204,6 +275,13 @@
 		}
 	}
 
+	&.alert-info{
+
+		.message{
+			border-color: $alert-info-bg;
+		}
+	}
+
 	&.alert-warning{
 
 		.message{
@@ -217,15 +295,34 @@
 			border-color: $alert-danger-bg;
 		}
 	}
+
+	&.alert-light{
+
+		.message{
+			border-color: $alert-light-bg;
+		}
+	}
+
+	&.alert-dark{
+
+		.message{
+			border-color: $alert-dark-bg;
+		}
+	}
 }
 
 .alert-icon.alert-icon-colored{
 	border: 1px solid darken(theme-color("light"), 17%);
+	outline-color: transparent;
 
 	> .icon{
 		position: relative;
 		background-color: darken(theme-color("light"), 2.8%);
 		border-width: 0;
+
+		&:before{
+			border: unset;
+		}
 
 		&:after{
 			border-left-color: darken(theme-color("light"), 2.8%);
@@ -249,12 +346,24 @@
 		@include alert-icon-colored($alert-success-bg);
 	}
 
+	&.alert-info{
+		@include alert-icon-colored($alert-info-bg);
+	}
+
 	&.alert-warning{
 		@include alert-icon-colored($alert-warning-bg);
 	}
 
 	&.alert-danger{
 		@include alert-icon-colored($alert-danger-bg);
+	}
+
+	&.alert-light{
+		@include alert-icon-colored($alert-dark-bg);
+	}
+
+	&.alert-dark{
+		@include alert-icon-colored($alert-light-icon-color);
 	}
 }
 
@@ -266,18 +375,30 @@
 	box-shadow: 0.5px 0.9px 0 rgba(0, 0, 0, 0.07);
 	
 	&.alert-primary{
-		@include alert-icon-colored($alert-primary-bg)
+		@include alert-icon-colored($alert-primary-bg);
 	}
 
 	&.alert-success{
-		@include alert-icon-colored($alert-success-bg)
+		@include alert-icon-colored($alert-success-bg);
+	}
+
+	&.alert-info{
+		@include alert-icon-colored($alert-info-bg);
 	}
 
 	&.alert-warning{
-		@include alert-icon-colored($alert-warning-bg)
+		@include alert-icon-colored($alert-warning-bg);
 	}
 
 	&.alert-danger{
-		@include alert-icon-colored($alert-danger-bg)
+		@include alert-icon-colored($alert-danger-bg);
+	}
+
+	&.alert-light{
+		@include alert-icon-colored($alert-dark-bg);
+	}
+
+	&.alert-dark{
+		@include alert-icon-colored($alert-light-icon-color);
 	}
 }

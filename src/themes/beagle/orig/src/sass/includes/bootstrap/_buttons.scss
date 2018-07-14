@@ -65,14 +65,22 @@
   &.disabled,
   &[disabled],
   fieldset[disabled] & {
+		color: $btn-secondary-color;
+
     &,
     &:hover,
     &:focus,
     &.focus,
     &:active,
     &.active {
+    	color: $btn-secondary-color;
       background-color: $btn-secondary-bg;
-          border-color: $btn-secondary-border;
+      border-color: $btn-secondary-border;
+      box-shadow: none;
+
+      .icon {
+      	color: $btn-secondary-color;
+      }
     }
   }
 
@@ -99,6 +107,10 @@
 	@include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
 }
 
+.btn-info{
+	@include button-variant($btn-info-color, $btn-info-bg, $btn-info-border);
+}
+
 .btn-danger{
 	@include button-variant($btn-danger-color, $btn-danger-bg, $btn-danger-border);
 }
@@ -109,6 +121,14 @@
 
 .btn-success{
 	@include button-variant($btn-success-color, $btn-success-bg, $btn-success-border);
+}
+
+.btn-light{
+	@include button-variant($btn-light-color, $btn-light-bg, $btn-light-border);
+}
+
+.btn-dark{
+	@include button-variant($btn-dark-color, $btn-dark-bg, $btn-dark-border);
 }
 
 //Button sizes
@@ -207,7 +227,7 @@
 		vertical-align: middle;
 
 		&.icon-left{
-			margin-right: $btn-icon-margin;
+			margin-right: ($btn-icon-margin + 3px);
 		}
 
 		&.icon-right{

@@ -9,11 +9,13 @@ var App = (function () {
     libsPath: 'lib',
     leftSidebarSlideSpeed: 200,
     leftSidebarToggleSpeed: 300,
+    enableLeftSidebar: true,
     enableSwipe: true,
     swipeTreshold: 100,
     scrollTop: true,
     openRightSidebarClass: 'open-right-sidebar',
     openLeftSidebarClass: 'open-left-sidebar',
+    disabledLeftSidebarClass: 'be-left-sidebar-disabled',
     offCanvasLeftSidebarClass: 'be-offcanvas-menu',
     toggleLeftSidebarButton: $('.be-toggle-left-sidebar'),
     closeRsOnClickOutside: true,
@@ -22,7 +24,7 @@ var App = (function () {
     collapsibleSidebarCollapsedClass: 'be-collapsible-sidebar-collapsed',
     openLeftSidebarOnClick: true,
     transitionClass: 'be-animate',
-    openSidebarDelay: 400 
+    openSidebarDelay: 400
   };
 
   var colors = {};
@@ -72,6 +74,36 @@ var App = (function () {
           $("li.active", leftSidebar).parents(".parent").removeClass("open");
           $("li.open", leftSidebar).removeClass("open");
         }
+      });
+    }
+
+    // Tooltip sidebar funcionality
+    function tooltipSidebar(){
+      var menu = $(".sidebar-elements > li > a", leftSidebar);
+
+      for(var i = 0; i <= menu.length; i++ ){        
+        var _self = menu[i];
+        var title = $("> span", _self).text();
+               
+        $(_self).attr({
+          'data-toggle': 'tooltip',
+          'data-placement': 'right',
+          'title': title          
+        });
+
+        $(_self).tooltip({
+          trigger: 'manual'
+        }); 
+      }
+
+      menu.on('mouseenter', function(){
+        if(!$.isSm() && wrapper.hasClass(config.collapsibleSidebarCollapsedClass)){
+          $(this).tooltip('show');
+        }
+      });
+
+      menu.on('mouseleave', function(){
+        $(this).tooltip('hide');
       });
     }
 
@@ -188,6 +220,7 @@ var App = (function () {
       /*Create sub menu elements*/
         syncSubMenu();
         toggleSideBar();
+        tooltipSidebar();
 
       if( !openLeftSidebarOnClick ){
       
@@ -520,6 +553,19 @@ var App = (function () {
     });
   }
 
+  //Add and remove active class on left sidebar
+  function activeItemLeftSidebar(menu_item){
+    var firstAnchor = menu_item;
+    var li = $(firstAnchor).parent();
+    var menu = $(li).parents('li');
+
+    if( !li.hasClass('active') ){
+      $('li.active', leftSidebar).removeClass('active');
+      $(menu).addClass('active');
+      $(li).addClass('active');
+    }
+  }
+
   //Wait for final event on window resize
   var waitForFinalEvent = (function () {
     var timers = {};
@@ -549,7 +595,11 @@ var App = (function () {
         FastClick.attach(document.body);
 
       /*Left Sidebar*/
-        leftSidebarInit();
+        if ( config.enableLeftSidebar ){
+          leftSidebarInit();
+        } else {
+          wrapper.addClass(config.disabledLeftSidebarClass);
+        }
       
       /*Right Sidebar*/
         rightSidebarInit();
@@ -605,7 +655,10 @@ var App = (function () {
         $('.modal').on('hidden.bs.modal', function(){
           $("html").removeClass('be-modal-open');
         });
-    }
+    },
+
+    //Methods
+    activeItemLeftSidebar: activeItemLeftSidebar 
   };
  
 })();

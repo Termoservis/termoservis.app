@@ -12,6 +12,13 @@
 		display: none;
 	}
 
+	.be-left-sidebar-disabled & {
+		
+		@media (max-width: 767px) {
+			display: none;
+		}
+	}
+
 	// Collapsed left sidebar style
 	.be-collapsible-sidebar-collapsed & {
 		width: $left-sidebar-collapsed-width;
@@ -92,7 +99,7 @@
 
 		.divider {
 			padding: 20px $left-sidebar-main-level-padding 0;
-			color: lighten($left-sidebar-color, 30%);
+			color: $left-sidebar-divider-color;
 			line-height: 30px;
 			font-weight: 600;
 			text-transform: uppercase;
@@ -119,7 +126,7 @@
 			> a {
 				display: block;
 				padding: 0 $left-sidebar-main-level-padding;
-				color: $left-sidebar-color;
+				color: $left-sidebar-text-color;
 				font-size: $left-sidebar-main-level-font-size;
 				line-height: $left-sidebar-main-level-height;
 				text-overflow: ellipsis;
@@ -150,10 +157,10 @@
 				}
 
 				&:hover {
-					background-color: darken($left-sidebar-bg, 2%);
+					background-color: $left-sidebar-main-level-hover-bg;
 
 					> span {
-						color: darken($left-sidebar-color, 15%);
+						color: $left-sidebar-main-level-hover-text-color;
 					}
 				}
 			}
@@ -222,7 +229,7 @@
 				    	display:  block;
 				    	padding: 30px $left-sidebar-collapsible-submenu-padding;
 				    	font-size: 1.385rem;
-				    	color: darken(theme-color("light"), 55%)
+				    	color: $left-sidebar-divider-color;
 				    }
 
 				    .nav-items {
@@ -320,7 +327,7 @@
 					&.active {
 
 						> a {
-							color: theme-color("primary");
+							color: $left-sidebar-text-active-color;
 						}
 					}
 
@@ -384,10 +391,10 @@
 				> a {
 					padding-left: $left-sidebar-main-level-padding;
 					font-weight: 500;
-					color: theme-color("primary");
+					color: $left-sidebar-text-active-color;
 
 					> span {
-						color: theme-color("primary");
+						color: $left-sidebar-text-active-color;
 					}
 				}
 			}
@@ -425,7 +432,7 @@
 					float: right;
 					font-family: $icons-font;
 					font-size: 1.615rem;
-					color: darken($left-sidebar-bg, 19%);
+					color: $left-sidebar-sub-menu-arrow-color;
 
 					@include non-responsive {
 						.be-collapsible-sidebar-collapsed & { 
@@ -468,14 +475,19 @@
 	}
 	
 	@include non-responsive {
-		.be-boxed-layout & {		
+
+		.be-boxed-layout & {
 			flex: 0 0 230px;
 			position: relative;
 
 			&:before {
 				position: absolute;
 			}
-		}		
+		}
+
+		.be-boxed-layout.be-fixed-sidebar & {
+			left: auto;
+		}
 	}
 
 	&:before {

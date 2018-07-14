@@ -24,3 +24,14 @@
     border-top:    $perpendicular-borders;
   }
 }
+
+@mixin special-light-triangle() {
+  width: 0;
+  height: 0;
+  content: '';
+  z-index: 2;
+  border: solid transparent;
+  border-width: 11px;
+  border-color: rgba(194, 225, 245, 0);
+  border-left-color: darken(theme-color("light"), 17%);
+}

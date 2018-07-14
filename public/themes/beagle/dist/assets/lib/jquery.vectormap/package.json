@@ -1,0 +1,22 @@
+{
+  "name": "jvectormap",
+  "version": "1.0.0",
+  "description": "jVectorMap is a vector-based, cross-browser and cross-platform component for interactive geography-related data visualization on the web. It provides numerious features like smooth zooming and panning, fully-customizable styling, markers, labels and tooltips.",
+  "main": "jquery-jvectormap.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/foxythemes/jvectormap.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/foxythemes/jvectormap/issues"
+  },
+  "homepage": "https://github.com/foxythemes/jvectormap#readme"
+}

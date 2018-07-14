@@ -10,13 +10,13 @@
 
 	&.login-tools {
 		padding: 15px 0 0;
-  	margin-bottom: 16px;	
+  	margin-bottom: 16px;
 	}
 }
 
 //Login forgot password link
-.login-forgot-password{
-	line-height: 2.3;
+.login-forgot-password {
+	line-height: 2.1;
 	text-align: right;
 }
 
@@ -25,18 +25,18 @@
 	padding: 19px 0 0;
 	margin-bottom: $form-group-margin-bottom - .1538rem;
 
-	.btn{
+	.btn {
 		width: 100%;
 	}
 
 	//Reduce bs col padding
-	> div{
+	> div {
 		
-		&:first-child{
+		&:first-child {
 			padding-right: 10px;
 		}
 
-		&:last-child{
+		&:last-child {
 			padding-left: 10px;
 		}
 	}

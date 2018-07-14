@@ -31,10 +31,20 @@
 		margin-left: 0;
 	}
 
+	.be-mega-menu & {
+		margin-left: auto;
+	}
+
 	@include non-responsive{
 		.be-boxed-layout & {
 			margin-left: 0;
 			overflow: hidden;
+			width: 100%;
+		}
+
+		.be-boxed-layout.be-fixed-sidebar & {
+			margin-left: $left-sidebar-width;
+			min-height: 100vh;
 		}
 	}
 }

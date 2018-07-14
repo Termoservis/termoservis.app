@@ -9,7 +9,7 @@
 }
 
 .badge-primary{
- @include badge-color($primary-color-text); 
+ @include badge-color(theme-color("primary")); 
 }
 
 .badge-secondary {
@@ -18,17 +18,17 @@
 }
 
 .badge-success{
- @include badge-color($success-color-text); 
+ @include badge-color(theme-color("success")); 
 }
 
 .badge-info{
- @include badge-color($info-color-text); 
+ @include badge-color(theme-color("info")); 
 }
 
 .badge-warning{
- @include badge-color($warning-color-text); 
+ @include badge-color(theme-color("warning")); 
 }
 
 .badge-danger{
- @include badge-color($danger-color-text); 
+ @include badge-color(theme-color("danger")); 
 }

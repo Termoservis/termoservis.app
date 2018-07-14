@@ -18,4 +18,4 @@ Start storyboard:
 
 | Name             | Version  | Type    | Description               |
 | ---------------- | -------- | ------- | ------------------------- |
-| Bootstrap Beagle | `v1.4.2` | `theme` | Bootstrap dashboard theme |
+| Bootstrap Beagle | `v1.5.0` | `theme` | Bootstrap dashboard theme |

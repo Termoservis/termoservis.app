@@ -57,6 +57,10 @@
 		}
 	}
 
+	.breadcrumb-item{
+		padding-left: 0;
+	}
+
 	@include tablet {
 		padding: 18px ($grid-gutter-width - 20) 0;
 		display: none;

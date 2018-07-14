@@ -1,0 +1,13 @@
+/*!
+ * Termoservis-beagle v1.0.0
+ * https://termoservis.hr
+ *
+ * Copyright (c) 2018 Termoservis
+ */
+
+.chartjs-wrapper canvas {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

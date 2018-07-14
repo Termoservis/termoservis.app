@@ -5,7 +5,7 @@
 	background-color: $top-header-bg;
 	border:	0;
 	margin-bottom: 0;
-	border-bottom: 1px solid darken(theme-color("light"), 10%);
+	border-bottom: 1px solid $top-header-border-color;
 	padding: 0;
 
 	@include tablet{
@@ -38,12 +38,17 @@
 	}
 
 	//logo and toggle button
-	.be-navbar-header{
+	.be-navbar-header {
 		display: flex;
 		width: $left-sidebar-width;
 
 		.be-collapsible-sidebar & {
 			justify-content: space-between;
+		}
+
+		// Hide logo on collapsible left sidebar
+		.be-collapsible-sidebar-hide-logo.be-collapsible-sidebar-collapsed & {
+			width: $left-sidebar-collapsed-width;
 		}
 
 		.be-nosidebar-left & {
@@ -54,11 +59,11 @@
 		}
 
 		//logo
-		.navbar-brand{
+		.navbar-brand {
 			line-height: $top-header-height;
 			height: $top-header-height;
 			width: $logo-width + ($logo-padding * 2);
-			background-image: url("#{$img-path}/logo.png");
+			background-image: url("#{contrast-image-selector($top-header-bg, $logo-bg)}");
 			background-repeat: no-repeat;
 			background-position: $logo-padding center;
 			padding: 0 $logo-padding;
@@ -66,24 +71,29 @@
 			display: block;
 
 			//Retina logo
-			@media #{$retina}{
-				background-image: url("#{$img-path}/logo-xx.png");
+			@media #{$retina} {
+				background-image: url("#{contrast-image-selector($top-header-bg, $logo-bg-2x)}");
 				background-size: $logo-width $logo-height;
 			}
 
 			//Phone style
-			@include tablet{
+			@include tablet {
 				display: none;
 			}
 
 			//Reduce content spacing on tablet res.
-			@include laptop{
+			@include laptop {
 				margin-right: 10px;
 			}
 
 			//Whitout left sidebar style
-			.be-nosidebar-left &{
+			.be-nosidebar-left & {
 				width: $logo-width + ($logo-padding * 2);
+			}
+
+			// Hide on collapsible left sidebar
+			.be-collapsible-sidebar-hide-logo.be-collapsible-sidebar-collapsed & {
+				display: none;
 			}
 		}
 
@@ -101,6 +111,11 @@
 		  	line-height: 25px;
 		  	vertical-align: middle;
 		  }
+
+		  // Hide logo on collapsible left sidebar
+		  .be-collapsible-sidebar-hide-logo.be-collapsible-sidebar-collapsed & {
+		  	padding: 0 21px;
+		  }
 		}
 
 		@include tablet{
@@ -115,6 +130,7 @@
 		float: left;
 		flex: 1 1 auto;
 		padding: 0 20px;
+		color: $top-header-text-color;
 
 		.be-nosidebar-left &{
 			padding-left: 10px;
@@ -149,10 +165,10 @@
 			&.show{
 
 				> a{
-					color: theme-color("primary");
+					color: $top-header-navbar-color-open;
 
 					&:focus, &:active, &:hover{
-						color: theme-color("primary");
+						color: $top-header-navbar-color-open;
 					}
 				}
 			}
@@ -241,7 +257,7 @@
 					> a{
 						display: block;
 						padding: 0 $left-sidebar-main-level-padding;
-						color: $left-sidebar-color;
+						color: $left-sidebar-text-color;
 						font-size: $left-sidebar-main-level-font-size;
 						line-height: $left-sidebar-main-level-height;
 						text-overflow: ellipsis;
@@ -343,15 +359,19 @@
 	}
 
 	//Right navbar
-	.be-right-navbar{
+	.be-right-navbar {
 		padding-right: 20px;
-		width: calc(100% - #{$left-sidebar-width});
+		width: $top-header-right-navbar-width;
 
 		&-flex {
 			display: flex;
+
+			.be-wrapper.be-nosidebar-left & {
+				width: $top-header-right-navbar-width;
+			}
 		}
 
-		.navbar-nav{
+		.navbar-nav {
 			background-color: transparent;
 								
 			@include tablet{
@@ -360,20 +380,20 @@
 
 					> a.nav-link{
 
-						color: theme-color("light");
+						color: $top-header-nav-link-color-mobile;
 
 						&:focus, &:active{
-							color: theme-color("light");
+							color: $top-header-nav-link-color-mobile;
 						}
 					}
 
 					&.show{
 
 						> a.nav-link{
-							color: theme-color("light");
+							color: $top-header-nav-link-color-mobile;
 
 							&:focus, &:active, &:hover{
-								color: theme-color("light");
+								color: $top-header-nav-link-color-mobile;
 							}
 						}
 					}
@@ -381,7 +401,7 @@
 			}
 		}
 		
-		@include tablet{
+		@include tablet {
 			padding-right: 0;
 			display: flex;
     	justify-content: space-between;
@@ -392,6 +412,15 @@
     	width: 100%;
     	background-color: $top-header-phone-bg;
     	z-index: $zindex-fixed;
+		}
+
+		// Hide logo on collapsible left sidebar
+		.be-collapsible-sidebar-hide-logo.be-collapsible-sidebar-collapsed & {
+			width: calc(100% - #{$left-sidebar-collapsed-width});
+
+			@include tablet {
+				width: 100%;
+			}
 		}
 
 		//Off Canvas menu right navbar
@@ -532,10 +561,10 @@
 		.be-navbar-header{
 
 			.navbar-brand{
-				background-image: url("#{$img-path}/logo-white.png");
+				background-image: url("#{$logo-white}");
 
 				@media #{$retina} {
-					background-image: url("#{$img-path}/logo-white-xx.png");
+					background-image: url("#{$logo-white-2x}");
 				}
 			}
 		}

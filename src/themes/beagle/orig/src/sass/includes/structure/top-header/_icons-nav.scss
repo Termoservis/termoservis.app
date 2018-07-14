@@ -32,7 +32,7 @@
 			.icon{
 				font-size: 1.846rem;
 				vertical-align: middle;
-				color: $icon-default-color;
+				color: $top-header-icons-color;
 
 				&.mdi-comment-more{
 					font-size: 1.538rem;
@@ -42,7 +42,7 @@
 			}
 
 			.indicator{
-				background-color: theme-color("primary");
+				background-color: $top-header-indicator-color;
 				border-radius: 50%;
 				display: block;
 				height: 6px;
@@ -163,10 +163,10 @@
 				background-color: transparent;
 
 				.icon{
-					color: theme-color("primary");
+					color: $top-header-icons-open-color;
 
 					@include tablet {
-						color: theme-color("light");
+						color: $top-header-icons-open-color-mobile;
 					}
 				}
 			}
@@ -192,12 +192,12 @@
 				}
 
 				.icon{
-					color: theme-color("light");
+					color: $top-header-icons-color-mobile;
 				}
 
 				.indicator{
 					right: 2px;
-					background-color: theme-color("light");
+					background-color: $top-header-indicator-color-mobile;
 				}
 			}
 		}

@@ -73,13 +73,13 @@
 
 				.icon{
 					vertical-align: middle;
-					margin-right: 6px;
+					margin-right: 10px;
 				}
 			}
 
 			.user-info{
-				background-color: theme-color("primary");
-				color: theme-color("light");
+				background-color: $top-header-phone-bg;
+				color: $top-header-user-info-text-color;
 				overflow: hidden;
 				padding: 20px 15px 14px;
 				border-radius: 2px 2px 0 0;
@@ -151,7 +151,7 @@
 				&:after{
 					left: auto;
 					right: 13px;
-					border-bottom-color: theme-color("primary");
+					border-bottom-color: $top-header-phone-bg;
 				}
 
 				&:before{
@@ -176,7 +176,7 @@
 				white-space: nowrap;
 
 				&:after{
-					color: theme-color("light");
+					color: $top-header-nav-link-color-mobile;
 				}
 
 				img{

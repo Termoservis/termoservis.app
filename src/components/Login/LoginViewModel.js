@@ -1,5 +1,6 @@
 import { action, computed, observable } from 'mobx';
 import SessionManager from '../../managers/SessionManager';
+import Auth from '../../managers/Auth';
 
 /**
  * The login view model.
@@ -52,6 +53,8 @@ class LoginViewModel {
     async loginCommandExecute(e) {
         if (!this.loginCommandCanExecute) return;
         if (e != null) e.preventDefault();
+
+        // new Auth().login();
 
         this.isError = false;
         this.isLoading = true;

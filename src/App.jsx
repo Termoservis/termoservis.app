@@ -108,7 +108,7 @@ const DefaultLayout = ({
                         <div className="be-navbar-header">
                             <Link to="/">
                                 <div className="text-uppercase brand-logo-text">
-                                    Termoservis
+                                    <img className="pb-1" src="/images/Termoservis.png" alt="Termoservis Logo" width="200" />
                                 </div>
                             </Link>
                         </div>

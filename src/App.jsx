@@ -30,6 +30,7 @@ import TableBody from './components/Table/TableBody';
 import TableRow from './components/Table/TableRow';
 import TableCell from './components/Table/TableCell';
 import AppConfig from './AppConfig';
+import LogoutView from './components/Logout/Logout';
 
 // the local dict example is below.
 // genitive plural form for all other numbers excluding cases below:
@@ -114,6 +115,25 @@ const DefaultLayout = ({
                             </Link>
                         </div>
                         <div className="users-search-bar be-right-navbar be-right-navbar-flex">
+                            <ul className="nav navbar-nav float-right be-user-nav">
+                                <li className="nav-item dropdown">
+                                    <a className="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
+                                        <img src={SessionManager.instance.profile.picture} alt="Avatar" />
+                                        <span className="user-name">{SessionManager.instance.profile.email}</span>
+                                    </a>
+                                    <div className="dropdown-menu" role="menu">
+                                        <div className="user-info">
+                                            <div className="user-name">{SessionManager.instance.profile.email}</div>
+                                        </div>
+                                        <a className="dropdown-item" href="pages-profile.html">
+                                            <span className="icon mdi mdi-face" />Account
+                                        </a>
+                                        <Link to="/logout" className="dropdown-item">
+                                            <span className="icon mdi mdi-power" />Logout
+                                        </Link>
+                                    </div>
+                                </li>
+                            </ul>
                             <div className="search-container">
                                 <div className="input-group input-group-sm">
                                     <input
@@ -212,6 +232,12 @@ const routes = [
         isFullPage: true,
         layout: SplashScreenLayout,
         main: props => <Login {...props} />
+    },
+    {
+        path: '/logout',
+        isFullPage: true,
+        layout: SplashScreenLayout,
+        main: props => <LogoutView {...props} />
     },
     {
         path: '/users/:userid',

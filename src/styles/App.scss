@@ -26,6 +26,12 @@ $dark-color-text: #333333;
             font-size: 1.6em;
         }
     }
+
+    .dropdown-menu .user-info {
+        .user-name {
+            font-size: 0.9em !important;
+        }
+    }
 }
 
 .table-hover {

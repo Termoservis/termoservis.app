@@ -1,5 +1,6 @@
 import { action, computed, observable } from 'mobx';
 import Auth from '../../managers/Auth';
+import SessionManager from '../../managers/SessionManager';
 
 /**
  * The login view model.
@@ -37,6 +38,8 @@ class LoginViewModel {
             try {
                 this.isLoading = true;
                 await Auth.instance.handleAuthenticationAsync();
+                const profile = await Auth.instance.getUserProfileAsync();
+                SessionManager.instance.setProfile(profile);
                 this.history.replace('/');
             } catch (err) {
                 this.isError = true;

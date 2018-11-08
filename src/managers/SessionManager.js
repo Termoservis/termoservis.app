@@ -2,15 +2,18 @@ class SessionManager {
     static instance = null;
 
     token = null;
-    auth0Token = null;
     expiresAt = null;
     isAuthenticated = false;
+    profile = null;
 
-    authenticate(token, auth0Token, expiresAt) {
+    authenticate(token, expiresAt) {
         this.token = token;
-        this.auth0Token = auth0Token;
         this.expiresAt = expiresAt;
         this.isAuthenticated = true;
+    }
+
+    setProfile(profile) {
+        this.profile = profile;
     }
 
     signout() {

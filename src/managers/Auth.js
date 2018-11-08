@@ -1,6 +1,7 @@
 import auth0 from 'auth0-js';
 import AppConfig from '../AppConfig';
 import SessionManager from './SessionManager';
+import Axios from 'axios';
 
 /**
  * The auth service.
@@ -9,6 +10,7 @@ class Auth {
     static instance = null;
 
     auth0;
+    auth0Token;
 
     constructor() {
         this.auth0 = new auth0.WebAuth({
@@ -18,6 +20,18 @@ class Auth {
             responseType: 'token id_token',
             scope: 'openid email profile'
         });
+    }
+
+    async getUserProfileAsync() {
+        const userInfo = await Axios.get(`https://${AppConfig.Auth0Domain}/userinfo`, {
+            headers: {
+                Authorization: `Bearer ${this.auth0Token}`
+            }
+        });
+        return {
+            email: userInfo.data.email,
+            picture: userInfo.data.picture
+        };
     }
 
     /**
@@ -30,6 +44,7 @@ class Auth {
             this.auth0.parseHash((err, authResult) => {
                 if (authResult && authResult.accessToken && authResult.idToken) {
                     SessionManager.instance.authenticate(authResult.idToken);
+                    this.auth0Token = authResult.accessToken;
                     resolve();
                 } else if (err) {
                     SessionManager.instance.signout();
@@ -46,6 +61,10 @@ class Auth {
      */
     login() {
         this.auth0.authorize();
+    }
+
+    logout() {
+
     }
 }
 

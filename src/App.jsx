@@ -29,6 +29,7 @@ import TableColumn from './components/Table/TableColumn';
 import TableBody from './components/Table/TableBody';
 import TableRow from './components/Table/TableRow';
 import TableCell from './components/Table/TableCell';
+import AppConfig from './AppConfig';
 
 // the local dict example is below.
 // genitive plural form for all other numbers excluding cases below:

@@ -7,13 +7,18 @@ import SessionManager from './SessionManager';
  */
 class Auth {
     static instance = null;
-    auth0 = new auth0.WebAuth({
-        domain: AppConfig.Auth0Domain,
-        clientID: AppConfig.Auth0ClientId,
-        redirectUri: AppConfig.Auth0RedirectUrl,
-        responseType: 'token id_token',
-        scope: 'openid email profile'
-    });
+
+    auth0;
+
+    constructor() {
+        this.auth0 = new auth0.WebAuth({
+            domain: AppConfig.Auth0Domain,
+            clientID: AppConfig.Auth0ClientId,
+            redirectUri: `${window.location.protocol}//${window.location.host}/${AppConfig.Auth0RedirectUrl}`,
+            responseType: 'token id_token',
+            scope: 'openid email profile'
+        });
+    }
 
     /**
      * Handles the authentication callback data.

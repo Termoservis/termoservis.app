@@ -40,6 +40,7 @@ class LoginViewModel {
                 this.history.replace('/');
             } catch (err) {
                 this.isError = true;
+                console.error('Auth error: ', err);
                 this.errorMessage = 'Pogreška prilikom prijave. Pokušajte ponovo.';
                 this.history.replace('/login');
             } finally {

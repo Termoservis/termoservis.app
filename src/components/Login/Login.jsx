@@ -41,7 +41,7 @@ const Login = ({
                         <Panel borderColor="danger">
                             <PanelHeader>
                                 <div className="h2 logo-img">
-                                    <img src="/images/Termoservis.png" alt="Termoservis Logo" width="200" />
+                                    <img src="/images/Termoservis.png" alt="Termoservis Logo" />
                                 </div>
                                 <PanelHeaderSubtitle>
                                     <span>Za pristup portalu izvršite prijavu.</span>
@@ -49,6 +49,13 @@ const Login = ({
                             </PanelHeader>
                             <PanelBody>
                                 <Form>
+                                    {isError ?
+                                        <Alert color="danger" colorStyle="iconContrast" isDismissible={false}>
+                                            <strong>Prijava</strong>
+                                            <p>{errorMessage}</p>
+                                        </Alert>
+                                        : null}
+
                                     <FormGroup className="login-submit">
                                         <Button
                                             size="xl"

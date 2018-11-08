@@ -2,10 +2,14 @@ class SessionManager {
     static instance = null;
 
     token = null;
+    auth0Token = null;
+    expiresAt = null;
     isAuthenticated = false;
 
-    authenticate(token) {
+    authenticate(token, auth0Token, expiresAt) {
         this.token = token;
+        this.auth0Token = auth0Token;
+        this.expiresAt = expiresAt;
         this.isAuthenticated = true;
     }
 

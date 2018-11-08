@@ -1,5 +1,4 @@
 import { action, computed, observable } from 'mobx';
-import SessionManager from '../../managers/SessionManager';
 import Auth from '../../managers/Auth';
 
 /**
@@ -11,8 +10,6 @@ class LoginViewModel {
     @observable isLoading;
     @observable isError;
     @observable errorMessage;
-    @observable userName;
-    @observable password;
 
     location;
     history;
@@ -25,28 +22,30 @@ class LoginViewModel {
      * @memberof LoginViewModel
      */
     @computed get loginCommandCanExecute() {
-        return (
-            this.userName != null &&
-            typeof this.userName === 'string' &&
-            this.userName.length > 0 &&
-            this.password != null &&
-            typeof this.password === 'string' &&
-            this.password.length > 0
-        );
+        return !this.isLoading;
     }
 
     @action.bound
-    setUserName(e, value) {
-        this.isError = false;
-        this.userName = value;
-        if (e != null) e.preventDefault();
+    setRoute(location, history) {
+        this.location = location;
+        this.history = history;
     }
 
     @action.bound
-    setPassword(e, value) {
-        this.isError = false;
-        this.password = value;
-        if (e != null) e.preventDefault();
+    async checkAuthCallback() {
+        if (/access_token|id_token|error/.test(this.location.hash)) {
+            try {
+                this.isLoading = true;
+                await Auth.instance.handleAuthenticationAsync();
+                this.history.replace('/');
+            } catch (err) {
+                this.isError = true;
+                this.errorMessage = 'Pogreška prilikom prijave. Pokušajte ponovo.';
+                this.history.replace('/login');
+            } finally {
+                this.isLoading = false;
+            }
+        }
     }
 
     @action.bound
@@ -54,19 +53,10 @@ class LoginViewModel {
         if (!this.loginCommandCanExecute) return;
         if (e != null) e.preventDefault();
 
-        // new Auth().login();
-
         this.isError = false;
         this.isLoading = true;
-
-        try {
-            SessionManager.instance.authenticate('test');
-            this.history.push('/');
-        } catch (error) {
-            this.isError = true;
-            this.errorMessage = 'Server nije odgovorio na vrijeme. Pokušajte ponovo.';
-        }
-
+        Auth.instance.login();
+        this.checkAuthCallback();
         this.isLoading = false;
     }
 }

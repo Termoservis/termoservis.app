@@ -206,6 +206,13 @@ const routes = [
         main: props => <Login {...props} />
     },
     {
+        path: '/logincallback',
+        isPublic: true,
+        isFullPage: true,
+        layout: SplashScreenLayout,
+        main: props => <Login {...props} />
+    },
+    {
         path: '/users/:userid',
         isFullPage: false,
         layout: DefaultLayout,
